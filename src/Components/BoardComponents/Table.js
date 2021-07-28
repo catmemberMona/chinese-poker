@@ -7,8 +7,6 @@ const Table = () => {
 let styles = {
   table: {
     flex: 1,
-    // alignContent: 'center',
-    // justifyContent: 'center',
 
   },
 };

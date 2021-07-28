@@ -1,5 +1,5 @@
-import Title from "./Title"
+import GameInfo from "./GameInfo"
 import Table from "./Table"
-import Players from './Players'
+import RoundInfo from './RoundInfo'
 
-export {Title, Table, Players}
+export {GameInfo, Table, RoundInfo}

@@ -1,18 +1,18 @@
 import React from 'react'
-import { Title, Table, Players } from './BoardComponents'
+import { GameInfo, Table, RoundInfo } from './BoardComponents'
 
 const Board = () => {
 
   return (
     <div style={styles.board}>
-      <div style={styles.title}>
-        <Title />
+      <div style={styles.gameInfo}>
+        <GameInfo />
       </div>
       <div style={styles.table}>
         <Table />
       </div>
-      <div style={styles.players}>
-        <Players />
+      <div style={styles.roundInfo}>
+        <RoundInfo />
       </div>
 
     </div>
@@ -24,7 +24,7 @@ let styles = {
     flex: 16,
     flexDirection: 'row',
   },
-  title: {
+  gameInfo: {
     flex: 1,
     justifyContent: 'start',
   },
@@ -33,7 +33,7 @@ let styles = {
     alignContent: 'center',
     justifyContent: 'center',
   },
-  players: {
+  roundInfo: {
     flex: 1,
     justifyContent: 'start',
   },
