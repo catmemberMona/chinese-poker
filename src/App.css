@@ -1,3 +1,7 @@
+* {
+  /* border: 1px black solid; */
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +9,11 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+div {
+  display: flex;
+  border: 1px black solid;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -21,3 +30,4 @@
     transform: rotate(360deg);
   }
 }
+
