@@ -42,6 +42,8 @@ let styles = {
   card: {
     height: "20vw",
     width: "12vw",
+    minWidth: 90,
+    minHeight: 140,
   },
   cardInner: {
     flex: 1,
