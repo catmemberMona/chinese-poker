@@ -26,7 +26,6 @@ let styles = {
   },
   gameInfo: {
     flex: 1,
-    justifyContent: 'start',
   },
   table: {
     flex: 4,
