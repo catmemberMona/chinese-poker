@@ -37,10 +37,11 @@ let styles = {
     flex: 1,
     justifyContent: "space-evenly",
     alignItems: "center",
+    flexWrap: "wrap"
   },
   card: {
-    height: 300,
-    width: 170,
+    height: "20vw",
+    width: "12vw",
   },
   cardInner: {
     flex: 1,
