@@ -1,16 +1,9 @@
-* {
-  /* border: 1px black solid; */
-
-}
-
-html {
-
-}
 
 .App {
   text-align: center;
   box-sizing: border-box;
   width: 100%;
+  background-image: url('./Images/lightWood.jpg');
 }
 
 .App-logo {
@@ -19,8 +12,26 @@ html {
 }
 
 div {
-  display: flex;
-  border: 1px black solid;
+  display: flex;  
+}
+
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+li {
+  float: left;
+  background: #eee;
+  margin-left: -20px;
+  margin-bottom: -40px;
+}
+
+li:first-child {
+  margin-left: 0px
 }
 
 @media (prefers-reduced-motion: no-preference) {
