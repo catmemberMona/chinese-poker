@@ -1,49 +1,46 @@
 import React from 'react';
-import { Card } from '@material-ui/core';
+import CustomizeCard from '../Card';
 
-const CustomizeCard = () => {
-  return (
-    <li style={styles.item}>
-      <Card style={styles.card} raised='true'>
-        <div style={styles.cardInner}>
-          <h3 style={{ flex: 1 }}>INT</h3>
-        </div>
-      </Card>
-    </li>
-  );
-};
+let dummyCards = [
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {}];
 
 const Cards = () => {
   return (
     <div style={styles.cards}>
       <ul>
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-        <CustomizeCard />
-        </ul>
+      {dummyCards.map((card) => {
+        return (
+             <li style={styles.item}>
+            <CustomizeCard cardSize={styles.card} cardInner={styles.cardInner} />
+            </li>
+        );
+      })}
+      </ul>
     </div>
   );
 };

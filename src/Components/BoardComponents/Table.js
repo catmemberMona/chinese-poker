@@ -1,24 +1,21 @@
 import React from 'react';
-import { Card } from '@material-ui/core';
+import CustomizeCard from '../Card'
 
-const CustomizeCard = () => {
-  return (
-    <Card style={styles.card} raised='true'>
-      <div style={styles.cardInner}>
-        <h1 style={{ flex: 1 }}>INT</h1>
-      </div>
-    </Card>
-  );
-}
+let dummyCards = [{},{},{},{},{}]
 
 const Cards = () => {
   return (
     <div style={styles.cards}>
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
-      <CustomizeCard />
+      {
+        dummyCards.map(card => {
+          return (
+            <CustomizeCard
+              cardSize={styles.card}
+              cardInner={styles.cardInner}
+            />
+          );
+        })
+      }
     </div>
   );
 }
