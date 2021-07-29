@@ -3,12 +3,12 @@ import { Card } from '@material-ui/core';
 
 const CustomizeCard = () => {
   return (
-    <Card style={ styles.card}>
+    <Card style={styles.card} raised='true'>
       <div style={styles.cardInner}>
-        <h1 style={{flex: 1}}>INT</h1>
+        <h1 style={{ flex: 1 }}>INT</h1>
       </div>
     </Card>
-  )
+  );
 }
 
 const Cards = () => {

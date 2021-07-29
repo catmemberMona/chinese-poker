@@ -3,13 +3,13 @@ import { Card } from '@material-ui/core';
 
 const CustomizeCard = () => {
   return (
-    <li>
-    <Card style={styles.card}>
+    <li style={styles.item}>
+      <Card style={styles.card} raised='true'>
         <div style={styles.cardInner}>
           <h3 style={{ flex: 1 }}>INT</h3>
         </div>
       </Card>
-      </li>
+    </li>
   );
 };
 
@@ -61,7 +61,7 @@ let styles = {
     flex: 5,
     flexDirection: 'row',
     background: 'rgba(38, 63, 38, 0.7)',
-      overflow: 'hidden'
+    overflow: 'hidden',
   },
   cards: {
     flex: 1,
@@ -70,6 +70,9 @@ let styles = {
     flexWrap: 'wrap',
     marginLeft: '1.5em',
     marginRight: '1em',
+  },
+  item: {
+      background: 'rgba(0, 0, 0, 0)',
   },
   card: {
     height: '10vw',
