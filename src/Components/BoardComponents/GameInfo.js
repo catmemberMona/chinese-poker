@@ -15,11 +15,13 @@ let styles = {
   },
   heading: {
     fontSize: '1.2em',
+    fontWeight: 700,
+    color: 'tan',
     margin: '.5em',
     alignSelf: 'start',
     background: 'rgba(38, 63, 38, 0.7)',
     borderBottomRightRadius: 10,
-    padding: 10
+    padding: 10, 
   },
 };
 export default GameInfo;

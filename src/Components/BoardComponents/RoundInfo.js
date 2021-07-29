@@ -51,6 +51,9 @@ let styles = {
     justifyContent: 'center',
   },
   playerName: {
+    fontSize: '.8em',
+    fontWeight: 600,
+    color: 'tan',
     margin: 'auto',
     padding: 5,
     minWidth: '6.5em',
