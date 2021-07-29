@@ -5,8 +5,8 @@ const Player = () => {
 
   return (
     <div style={styles.player}>
-      <Turn style={styles.turn}/>
-      <Hand style={ styles.Hand}/>
+      <Turn />
+      <Hand />
     </div>
   )
 }
@@ -16,13 +16,7 @@ let styles = {
     flex: 7,
     flexDirection: 'column',
   },
-  turn: {
-    flex: 1,
-  },
-  hand: {
-    flex: 3,
-    flexDirection: 'row',
-  },
+
 };
 
 export default Player
