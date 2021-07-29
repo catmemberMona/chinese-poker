@@ -25,16 +25,16 @@ let styles = {
     flexDirection: 'row',
   },
   gameInfo: {
-    flex: 1,
+    flex: .8,
   },
   table: {
-    flex: 4,
+    flex: 4.4,
     alignContent: 'center',
     justifyContent: 'center',
   },
   roundInfo: {
-    flex: 1,
-    justifyContent: 'start',
+    flex: .8,
+    justifyContent: 'flex-end',
   },
 };
 

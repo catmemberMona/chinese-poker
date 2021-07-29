@@ -10,13 +10,16 @@ const GameInfo = () => {
 
 let styles = {
   gameInfo: {
-    flex: 1,
-    justifyContent: "center",
+    flex: 0.8,
+    justifyContent: 'center',
   },
   heading: {
-    fontSize: "1.5em",
-    paddingLeft: '.5em',
-    alignSelf: "start",
-  }
+    fontSize: '1.2em',
+    margin: '.5em',
+    alignSelf: 'start',
+    background: 'rgba(38, 63, 38, 0.7)',
+    borderBottomRightRadius: 10,
+    padding: 10
+  },
 };
 export default GameInfo;
