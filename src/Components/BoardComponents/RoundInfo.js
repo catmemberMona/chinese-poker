@@ -40,6 +40,7 @@ let styles = {
   playersInfo: {
     flex: 1,
     flexDirection: 'column',
+    paddingRight: '.5em'
   },
   card: {
     margin: 3,

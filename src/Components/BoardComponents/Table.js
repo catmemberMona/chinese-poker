@@ -44,6 +44,7 @@ let styles = {
     width: "12vw",
     minWidth: 90,
     minHeight: 140,
+    margin: 1
   },
   cardInner: {
     flex: 1,

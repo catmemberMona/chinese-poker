@@ -15,6 +15,7 @@ let styles = {
   },
   heading: {
     fontSize: "1.5em",
+    paddingLeft: '.5em',
     alignSelf: "start",
   }
 };
