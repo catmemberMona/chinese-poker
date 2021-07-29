@@ -28,7 +28,7 @@ let styles = {
   },
   message: {
     flex: 6,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   choice: {
