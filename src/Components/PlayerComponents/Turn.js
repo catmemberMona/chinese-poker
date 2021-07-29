@@ -24,7 +24,7 @@ const Turn = () => {
 let styles = {
   turn: {
     flex: 1,
-    flexWrap: "wrap"
+    flexWrap: 'wrap',
   },
   message: {
     flex: 6,
@@ -36,7 +36,10 @@ let styles = {
     justifyContent: 'space-evenly',
   },
   text: {
-    fontSize: '.8em',
+    fontSize: '.85em',
+    fontWeight: 600,
+    color: 'green',
+
   },
   buttons: {
     width: 100,
