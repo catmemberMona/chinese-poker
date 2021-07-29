@@ -13,7 +13,7 @@ const Player = () => {
 
 let styles = {
   player: {
-    flex: 7,
+    flex: 10,
     flexDirection: 'column',
   },
 

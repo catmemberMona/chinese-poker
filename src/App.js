@@ -6,7 +6,7 @@ function App() {
     <div className="App" style={styles.app} >
       <Board />
       <Player />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -60,18 +60,20 @@ let styles = {
   hand: {
     flex: 5,
     flexDirection: 'row',
+    background: 'rgba(38, 63, 38, 0.7)',
+      overflow: 'hidden'
   },
   cards: {
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexWrap: 'wrap',
-    marginLeft: "1.5em",
-    marginRight: "1em"
+    marginLeft: '1.5em',
+    marginRight: '1em',
   },
   card: {
-    height: '7vw',
-    width: '4vw',
+    height: '10vw',
+    width: '7.5vw',
     minWidth: 68,
     minHeight: 90,
   },
