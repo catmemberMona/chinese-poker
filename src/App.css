@@ -1,5 +1,9 @@
+
 .App {
   text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  background-image: url('./Images/lightWood.jpg');
 }
 
 .App-logo {
@@ -7,25 +11,33 @@
   pointer-events: none;
 }
 
+div {
+  display: flex;  
+}
+
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+li {
+  float: left;
+  background: #eee;
+  margin-left: -20px;
+  margin-bottom: -40px;
+}
+
+li:first-child {
+  margin-left: 20px
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +48,4 @@
     transform: rotate(360deg);
   }
 }
+

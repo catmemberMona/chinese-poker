@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react';
+import { Board, Player, Footer } from './Components'
+import {createDeck} from './Data/card'
 
 function App() {
+  const deck = createDeck()
+
+  // Init State
+  const [isFirstGame, toggleIsFirstGame] = useState(false)
+  const [isPlaying, toggleIsPlaying] = useState(false)
+  const [playerStats, updatePlayerStats] = useState({
+    cards: [],
+    totalCards: 0
+  })
+  const [computerStats, updateComputerStats] = useState({
+    cards: [],
+    totalCards: 0,
+  });
+  const [cardsLastPlayed, newCardsPlayed] = useState([])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={styles.app} >
+      <Board />
+      <Player />
+      {/* <Footer /> */}
     </div>
   );
+}
+
+let styles = {
+  app: {
+    flex: 1,
+    flexDirection: "column",
+    height: "100vh",
+    width: "100vw",
+
+  },
+  
+
+
 }
 
 export default App;
