@@ -7,13 +7,14 @@ let dummyCards = createDeck().slice(0,26);
 const Cards = () => {
   return (
     <div style={styles.cards}>
-      <ul>
+      <ul style={{flex:1}}>
       {dummyCards.map((card) => {
         return (
           <li style={styles.item} key={card.priority + card.typePriority}>
             <CustomizeCard
               cardSize={styles.card}
               cardInner={styles.cardInner}
+              card={card}
             />
           </li>
         );
@@ -47,17 +48,14 @@ let styles = {
     marginRight: '1em',
   },
   item: {
-      background: 'rgba(0, 0, 0, 0)',
+    background: 'rgba(0, 0, 0, 0)',
+    flex: 1
   },
   card: {
     height: '10vw',
     width: '7.5vw',
     minWidth: 68,
     minHeight: 90,
-  },
-  cardInner: {
-    flex: 1,
-    margin: 3,
   },
 };
 export default Hand;

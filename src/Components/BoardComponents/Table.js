@@ -13,6 +13,7 @@ const Cards = () => {
             <CustomizeCard key={card.priority + card.typePriority}
               cardSize={styles.card}
               cardInner={styles.cardInner}
+              card={card}
             />
           );
         })
