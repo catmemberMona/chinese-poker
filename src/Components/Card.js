@@ -5,7 +5,7 @@ const CustomizeCard = (props) => {
   let { cardSize, cardInner } = props
 
   return (
-    <Card style={cardSize} raised='true'>
+    <Card style={cardSize} raised={true}>
       <div style={cardInner}>
         <h1 style={{ flex: 1 }}>INT</h1>
       </div>

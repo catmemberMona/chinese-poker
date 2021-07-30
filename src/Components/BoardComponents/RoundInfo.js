@@ -5,13 +5,13 @@ const PlayersInfo = () => {
   return (
     <div style={styles.playersInfo}>
       <div>
-        <Card style={styles.card} raised='true'>
+        <Card style={styles.card} raised={true}>
           <p>26</p>
         </Card>
         <p style={styles.playerName}>Amber the Computer</p>
       </div>
       <div>
-        <Card style={styles.card} raised='true'>
+        <Card style={styles.card} raised={true}>
           <p>26</p>
         </Card>
         <p style={styles.playerName}>You</p>
