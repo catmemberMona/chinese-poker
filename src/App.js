@@ -4,7 +4,7 @@ import {createDeck} from './Data/card'
 
 function App() {
   const deck = createDeck()
-  console.log(deck)
+
   return (
     <div className="App" style={styles.app} >
       <Board />

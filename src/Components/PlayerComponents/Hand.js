@@ -1,33 +1,8 @@
 import React from 'react';
 import CustomizeCard from '../Card';
+import {createDeck} from '../../Data/card'
 
-let dummyCards = [
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {}];
+let dummyCards = createDeck().slice(0,26);
 
 const Cards = () => {
   return (
@@ -35,9 +10,12 @@ const Cards = () => {
       <ul>
       {dummyCards.map((card) => {
         return (
-             <li style={styles.item}>
-            <CustomizeCard cardSize={styles.card} cardInner={styles.cardInner} />
-            </li>
+          <li style={styles.item} key={card.priority + card.typePriority}>
+            <CustomizeCard
+              cardSize={styles.card}
+              cardInner={styles.cardInner}
+            />
+          </li>
         );
       })}
       </ul>
