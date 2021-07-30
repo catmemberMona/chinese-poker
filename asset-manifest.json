@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/chinese-poker/static/css/main.8d8bffd2.chunk.css",
-    "main.js": "/chinese-poker/static/js/main.f6ec0c65.chunk.js",
-    "main.js.map": "/chinese-poker/static/js/main.f6ec0c65.chunk.js.map",
-    "runtime-main.js": "/chinese-poker/static/js/runtime-main.6f15918c.js",
-    "runtime-main.js.map": "/chinese-poker/static/js/runtime-main.6f15918c.js.map",
-    "static/js/2.b54c4d81.chunk.js": "/chinese-poker/static/js/2.b54c4d81.chunk.js",
-    "static/js/2.b54c4d81.chunk.js.map": "/chinese-poker/static/js/2.b54c4d81.chunk.js.map",
-    "static/js/3.16981a02.chunk.js": "/chinese-poker/static/js/3.16981a02.chunk.js",
-    "static/js/3.16981a02.chunk.js.map": "/chinese-poker/static/js/3.16981a02.chunk.js.map",
+    "main.css": "/chinese-poker/static/css/main.1c792bda.chunk.css",
+    "main.js": "/chinese-poker/static/js/main.e80deb07.chunk.js",
+    "main.js.map": "/chinese-poker/static/js/main.e80deb07.chunk.js.map",
+    "runtime-main.js": "/chinese-poker/static/js/runtime-main.fc7b5819.js",
+    "runtime-main.js.map": "/chinese-poker/static/js/runtime-main.fc7b5819.js.map",
+    "static/js/2.29a28b8d.chunk.js": "/chinese-poker/static/js/2.29a28b8d.chunk.js",
+    "static/js/2.29a28b8d.chunk.js.map": "/chinese-poker/static/js/2.29a28b8d.chunk.js.map",
+    "static/js/3.0f7c9607.chunk.js": "/chinese-poker/static/js/3.0f7c9607.chunk.js",
+    "static/js/3.0f7c9607.chunk.js.map": "/chinese-poker/static/js/3.0f7c9607.chunk.js.map",
     "index.html": "/chinese-poker/index.html",
-    "static/css/main.8d8bffd2.chunk.css.map": "/chinese-poker/static/css/main.8d8bffd2.chunk.css.map",
-    "static/js/2.b54c4d81.chunk.js.LICENSE.txt": "/chinese-poker/static/js/2.b54c4d81.chunk.js.LICENSE.txt"
+    "static/css/main.1c792bda.chunk.css.map": "/chinese-poker/static/css/main.1c792bda.chunk.css.map",
+    "static/js/2.29a28b8d.chunk.js.LICENSE.txt": "/chinese-poker/static/js/2.29a28b8d.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/chinese-poker/static/media/lightWood.d3f119f9.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.6f15918c.js",
-    "static/js/2.b54c4d81.chunk.js",
-    "static/css/main.8d8bffd2.chunk.css",
-    "static/js/main.f6ec0c65.chunk.js"
+    "static/js/runtime-main.fc7b5819.js",
+    "static/js/2.29a28b8d.chunk.js",
+    "static/css/main.1c792bda.chunk.css",
+    "static/js/main.e80deb07.chunk.js"
   ]
 }
