@@ -3,6 +3,7 @@ import { Card } from '@material-ui/core';
 
 const CustomizeCard = (props) => {
   let { cardSize, cardInner } = props
+
   return (
     <Card style={cardSize} raised='true'>
       <div style={cardInner}>
