@@ -1,9 +1,23 @@
 import './App.css';
+import React, {useState} from 'react';
 import { Board, Player, Footer } from './Components'
 import {createDeck} from './Data/card'
 
 function App() {
   const deck = createDeck()
+
+  // Init State
+  const [isFirstGame, toggleIsFirstGame] = useState(false)
+  const [isPlaying, toggleIsPlaying] = useState(false)
+  const [playerStats, updatePlayerStats] = useState({
+    cards: [],
+    totalCards: 0
+  })
+  const [computerStats, updateComputerStats] = useState({
+    cards: [],
+    totalCards: 0,
+  });
+  const [cardsLastPlayed, newCardsPlayed] = useState([])
 
   return (
     <div className="App" style={styles.app} >
