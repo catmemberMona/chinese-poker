@@ -12,37 +12,39 @@ function CardData(){
 const createDeck = () => {
   let deckData = [];
 
-  for (const [key, value] of Object.entries(elementalImages)) {
-    let newCardData = new CardData()
+  for (const [typeKey, typeValue] of Object.entries(elementalImages)) {
+    let newCardData;
 
-    newCardData.type = key
-    newCardData.image = value
+    for (const [nameKey, nameValue] of Object.entries(nameImages)) {
+      newCardData = new CardData();
 
-    switch (key) {
-      case "air":
-        newCardData.typePriority = 0.4;
-        break
-      case "water":
-        newCardData.typePriority = 0.3
-        break
-      case "earth":
-        newCardData.typePriority = 0.2
-        break
-      default:
-        newCardData.typePriority = 0.1
-    }
+      // Assign the Name Data
+      newCardData.name = nameKey;
+      newCardData.priority = nameValue.priority;
+      newCardData.nameImage = nameValue.image;
 
-    let priority = 1
-    for (const [key, value] of Object.entries(nameImages)) {
-      newCardData.name = key
-      newCardData.priority = priority
-      newCardData.nameImage = value
+      // Assign the Type Data
+      newCardData.type = typeKey;
+      newCardData.typeImage = typeValue;
 
-      deckData.push(newCardData)
-      priority+=1 
+      switch (typeKey) {
+        case 'air':
+          newCardData.typePriority = 0.4;
+          break;
+        case 'water':
+          newCardData.typePriority = 0.3;
+          break;
+        case 'earth':
+          newCardData.typePriority = 0.2;
+          break;
+        default:
+          newCardData.typePriority = 0.1;
+      }
+
+      deckData.push(newCardData);
     }
   }
-  console.log('End');
+  
   return deckData
 };
 
