@@ -3,6 +3,7 @@ import { Card } from '@material-ui/core';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setFirstGameStateToFalse, toggleInGameState } from '../../store/reducers/gameReducer';
+import { givePlayerStack } from '../../store/reducers/playerReducer';
 
 import deck from '../../Data/card'
 
@@ -68,6 +69,7 @@ const RoundInfo = () => {
 
     let [computerStack, playerStack] = shuffleAndSeperateCards()
     // dispatch to computer and player card stacks 
+    dispatch(givePlayerStack(playerStack))
 
     // asign first player by who has the smallest 3
 
