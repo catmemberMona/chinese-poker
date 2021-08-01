@@ -26,7 +26,33 @@ const PlayersInfo = () => {
 }
 
 const shuffleAndSeperateCards = () => {
+  let randomIndices = []
 
+  for (let i = 0; i < deck.length / 2; i++){
+    let randomInt = -1
+    do {
+      randomInt = Math.floor(Math.random() * deck.length);
+    } while (randomIndices.includes(randomInt))
+    
+    randomIndices.push(randomInt)
+  }
+
+  randomIndices.sort((a,b) => a - b)
+
+  let computerStack = []
+  let playerStack = []
+  let indexPointer = 0
+
+  for (let i = 0; i < deck.length; i++) {
+    if (randomIndices[indexPointer] === i) {
+      computerStack.push(deck[i])
+      indexPointer+=1
+    } else {
+      playerStack.push(deck[i])
+    }
+  }
+
+  return [computerStack, playerStack]
 }
 
 const RoundInfo = () => {
@@ -40,7 +66,7 @@ const RoundInfo = () => {
     if (isFirstRound) dispatch(setFirstGameStateToFalse());
     dispatch(toggleInGameState());
 
-    // let [computerStack, playerStack] = shuffleAndSeperateCards()
+    let [computerStack, playerStack] = shuffleAndSeperateCards()
     // dispatch to computer and player card stacks 
 
     // asign first player by who has the smallest 3
@@ -51,8 +77,17 @@ const RoundInfo = () => {
     <div style={styles.roundInfo}>
       <PlayersInfo />
       <div style={styles.controls}>
-        <button style={styles.buttons} onClick={startRound}>Start Game</button>
-        <button style={styles.buttons}>Resuffle</button>
+        <button style={{ ...styles.buttons,  visibility: `${!isInPlay ? 'visible' : 'hidden'}` }} onClick={startRound}>
+          {isFirstRound ? 'Start Game' : 'Play Again'}
+        </button>
+        <button
+          style={
+            {...styles.buttons,
+            visibility: `${isInPlay ? 'visible' : 'hidden'}` }
+          }
+        >
+          Reshuffle
+        </button>
       </div>
     </div>
   );
@@ -98,6 +133,13 @@ let styles = {
     height: 50,
     borderRadius: 8,
     margin: 5,
+  },
+  reshuffle: {
+    width: 100,
+    height: 50,
+    borderRadius: 8,
+    margin: 5,
+
   },
 };
 
