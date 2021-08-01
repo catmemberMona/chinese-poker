@@ -3,8 +3,8 @@ const SET_FIRST_GAME_TO_FALSE = 'SET_FIRST_GAME_TO_FALSE';
 const TOGGLE_IN_GAME = 'TOGGLE_IN_GAME';
 
 // Create actions
-const setFirstGameStateToFalse = () => ({ type: SET_FIRST_GAME_TO_FALSE} )
-const toggleInGameState = () => ({ type: TOGGLE_IN_GAME } )
+export const setFirstGameStateToFalse = () => ({ type: SET_FIRST_GAME_TO_FALSE} )
+export const toggleInGameState = () => ({ type: TOGGLE_IN_GAME } )
 
 
 var initialState = {

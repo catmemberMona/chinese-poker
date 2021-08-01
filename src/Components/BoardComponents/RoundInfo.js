@@ -1,6 +1,11 @@
 import React from 'react';
 import { Card } from '@material-ui/core';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setFirstGameStateToFalse, toggleInGameState } from '../../store/reducers/gameReducer';
+
+import deck from '../../Data/card'
+
 const PlayersInfo = () => {
   return (
     <div style={styles.playersInfo}>
@@ -20,12 +25,33 @@ const PlayersInfo = () => {
   );
 }
 
+const shuffleAndSeperateCards = () => {
+
+}
+
 const RoundInfo = () => {
+  let game = useSelector((state) => (state.game))
+  let isFirstRound = game.isFirstGame
+  let isInPlay = game.isInPlay
+
+  let dispatch = useDispatch()
+
+  const startRound = () => {
+    if (isFirstRound) dispatch(setFirstGameStateToFalse());
+    dispatch(toggleInGameState());
+
+    // let [computerStack, playerStack] = shuffleAndSeperateCards()
+    // dispatch to computer and player card stacks 
+
+    // asign first player by who has the smallest 3
+
+  }
+
   return (
     <div style={styles.roundInfo}>
       <PlayersInfo />
       <div style={styles.controls}>
-        <button style={styles.buttons}>Restart Game</button>
+        <button style={styles.buttons} onClick={startRound}>Start Game</button>
         <button style={styles.buttons}>Resuffle</button>
       </div>
     </div>
