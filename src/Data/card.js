@@ -48,4 +48,6 @@ const createDeck = () => {
   return deckData
 };
 
-export {createDeck}
+const deck = createDeck()
+
+export default deck
