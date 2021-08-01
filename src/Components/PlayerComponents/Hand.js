@@ -1,8 +1,8 @@
 import React from 'react';
 import CustomizeCard from '../Card';
-import {createDeck} from '../../Data/card'
+import deck from '../../Data/card'
 
-let dummyCards = createDeck().slice(0,26);
+let dummyCards = deck.slice(0,26);
 
 const Cards = () => {
   return (
