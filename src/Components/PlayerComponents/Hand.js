@@ -1,14 +1,13 @@
 import React from 'react';
 import CustomizeCard from '../Card';
-import deck from '../../Data/card'
-
-let dummyCards = deck.slice(0,26);
+import { useSelector } from 'react-redux';
 
 const Cards = () => {
+  let cards = useSelector((state) => state.player.hand)
   return (
     <div style={styles.cards}>
       <ul style={{flex:1}}>
-      {dummyCards.map((card) => {
+      {cards.map((card) => {
         return (
           <li style={styles.item} key={card.priority + card.typePriority}>
             <CustomizeCard
