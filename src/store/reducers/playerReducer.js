@@ -9,14 +9,14 @@ export const addSelectedCard = (card) => ({
   card,
 });
 
-export const removeCardsSelected = (card) => ({
+export const removeCardSelected = (card) => ({
   type: REMOVE_SELECTED_CARD,
-  card,
+  card
 });
 
 export const givePlayerStack = (stack) => ({
   type: GET_INITIAL_HAND,
-  cards
+  stack
 })
 
 var initialState = {
@@ -27,8 +27,8 @@ var initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INITIAL_HAND:
-      return {...state, hand: [...action.stack]}
-    case GET_SELECTED_CARD:
+      return { ...state, hand: [...action.stack] };
+    case ADD_SELECTED_CARD:
       return { ...state, cardsSelected: [...state.cardsSelected, action.card] };
     case REMOVE_SELECTED_CARD:
       const index = state.cardsSelected.indexOf(action.card);
