@@ -20,14 +20,15 @@ export const givePlayerStack = (stack) => ({
 })
 
 var initialState = {
-  hand: [], 
+  hand: [],
+  cardsLeft: 0,
   cardsSelected: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INITIAL_HAND:
-      return { ...state, hand: [...action.stack] };
+      return { ...state, hand: [...action.stack], cardsLeft: action.stack.length };
     case ADD_SELECTED_CARD:
       return { ...state, cardsSelected: [...state.cardsSelected, action.card] };
     case REMOVE_SELECTED_CARD:

@@ -8,6 +8,8 @@ import { givePlayerStack } from '../../store/reducers/playerReducer';
 import deck from '../../Data/card'
 
 const PlayersInfo = () => {
+  let cardsRemainingCountForPlayer = useSelector(state => state.player.cardsLeft)
+
   return (
     <div style={styles.playersInfo}>
       <div>
@@ -18,7 +20,7 @@ const PlayersInfo = () => {
       </div>
       <div>
         <Card style={styles.card} raised={true}>
-          <p>26</p>
+          <p>{cardsRemainingCountForPlayer}</p>
         </Card>
         <p style={styles.playerName}>You</p>
       </div>
