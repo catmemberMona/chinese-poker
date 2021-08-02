@@ -1,7 +1,7 @@
 import React from 'react';
 import Place from './Place'
 import { useDispatch, useSelector } from 'react-redux';
-import {updateCardsOnTable} from '../../store/reducers/tableReducer'
+import {updateCardsOnTable, clearTable} from '../../store/reducers/tableReducer'
 
 
 const Message = () => {
@@ -11,11 +11,19 @@ const Message = () => {
 }
 
 const Choice = () => {
+  const dispatch = useDispatch()
+
+  const passTurn = () => {
+    // remove cards on table
+    dispatch(clearTable())
+    
+    // computer can play any card it wants 
+  }
   
   return (
     <div style={styles.choice}>
       <Place />
-      <button style={styles.buttons}>Pass</button>
+      <button style={styles.buttons} onClick={passTurn}>Pass</button>
     </div>
   );
 }
