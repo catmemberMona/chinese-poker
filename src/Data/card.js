@@ -52,6 +52,5 @@ const createDeck = () => {
   return deckData
 };
 
-const deck = createDeck()
 
-export default deck
+export default createDeck

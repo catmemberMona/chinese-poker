@@ -4,8 +4,9 @@ import { Card } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFirstGameStateToFalse, toggleInGameState } from '../../store/reducers/gameReducer';
 import { givePlayerStack } from '../../store/reducers/playerReducer';
+import { resetGame } from '../../store/reducers';
 
-import deck from '../../Data/card'
+import createDeck from '../../Data/card'
 
 const PlayersInfo = () => {
   let cardsRemainingCountForPlayer = useSelector(state => state.player.cardsLeft)
@@ -28,7 +29,7 @@ const PlayersInfo = () => {
   );
 }
 
-const shuffleAndSeperateCards = () => {
+const shuffleAndSeperateCards = (deck) => {
   let randomIndices = []
 
   for (let i = 0; i < deck.length / 2; i++){
@@ -69,7 +70,9 @@ const RoundInfo = () => {
     if (isFirstRound) dispatch(setFirstGameStateToFalse());
     dispatch(toggleInGameState());
 
-    let [computerStack, playerStack] = shuffleAndSeperateCards()
+    const deck = createDeck();
+
+    let [computerStack, playerStack] = shuffleAndSeperateCards(deck)
     // dispatch to computer and player card stacks 
     dispatch(givePlayerStack(playerStack))
 
@@ -77,18 +80,30 @@ const RoundInfo = () => {
 
   }
 
+  const reStart = () => {
+    dispatch(resetGame());
+    startRound()
+  };
+
   return (
     <div style={styles.roundInfo}>
       <PlayersInfo />
       <div style={styles.controls}>
-        <button style={{ ...styles.buttons,  visibility: `${!isInPlay ? 'visible' : 'hidden'}` }} onClick={startRound}>
+        <button
+          style={{
+            ...styles.buttons,
+            visibility: `${!isInPlay ? 'visible' : 'hidden'}`,
+          }}
+          onClick={startRound}
+        >
           {isFirstRound ? 'Start Game' : 'Play Again'}
         </button>
         <button
-          style={
-            {...styles.buttons,
-            visibility: `${isInPlay ? 'visible' : 'hidden'}` }
-          }
+          style={{
+            ...styles.buttons,
+            visibility: `${isInPlay ? 'visible' : 'hidden'}`,
+          }}
+          onClick={reStart}
         >
           Reshuffle
         </button>
