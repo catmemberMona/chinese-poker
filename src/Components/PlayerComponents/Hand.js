@@ -31,6 +31,7 @@ const Cards = () => {
             style={{
               ...styles.item,
               marginTop: card.isSelected ? -10 : 0,
+              marginBottom: card.isSelected? 10 : 0,
     
             }}
             key={card.id}
@@ -71,6 +72,7 @@ let styles = {
     flexWrap: 'wrap',
     marginLeft: '1.5em',
     marginRight: '1em',
+    paddingTop: '1em'
   },
   item: {
     background: 'rgba(0, 0, 0, 0)',
