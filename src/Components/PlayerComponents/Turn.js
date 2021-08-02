@@ -151,8 +151,11 @@ const Choice = () => {
     }
 
     if (groupType !== onTableGroupType) {
-      // This grouping of cards is not the same as the one on the table
-      return 
+      let groupTypeRanking = {'straight flushing': 1, 'for of a kind': 2, 'full house': 3, 'flush': 4, 'straight': 5}
+      if (groupTypeRanking[groupType] < groupTypeRanking[onTableGroupType]) {
+        // This grouping of cards is of a lower rank than the one on the table
+        return;
+      }
     }
 
     // check for higher lvl group
