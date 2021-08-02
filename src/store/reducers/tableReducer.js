@@ -20,6 +20,7 @@ var initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PLACED_DOWN_CARDS:
+      console.log("Cards placed on table in table reducer:", action.cardsStat)
       return { ...action.cardsStat };
     default:
       return state;
