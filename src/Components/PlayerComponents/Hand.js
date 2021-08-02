@@ -14,20 +14,28 @@ const Cards = () => {
 
   const selectCard = (card) => {
     if (!cardsSelected.includes(card)) {
+      card.isSelected = true;
       dispatch(addSelectedCard(card))
     } else {
+      card.isSelected = false;
       dispatch(removeCardSelected(card))
     }
   }
-
-  console.log("CARDS THAT WERE PREVIOUSLY SELECTED:", cardsSelected)
 
   return (
     <div style={styles.cards}>
       <ul style={{flex:1}}>
       {cards.map((card) => {
         return (
-          <li style={styles.item} key={card.id} onClick={()=>selectCard(card)}>
+          <li
+            style={{
+              ...styles.item,
+              marginTop: card.isSelected ? -10 : 0,
+    
+            }}
+            key={card.id}
+            onClick={() => selectCard(card)}
+          >
             <CustomizeCard
               cardSize={styles.card}
               cardInner={styles.cardInner}

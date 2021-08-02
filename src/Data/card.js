@@ -8,6 +8,7 @@ function CardData() {
   this.type = "";
   this.typePriority = 0.0;
   this.typeImage = "";
+  this.isSelected = false;
 };
 
 const createDeck = () => {
