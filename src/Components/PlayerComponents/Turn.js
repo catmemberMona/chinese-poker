@@ -135,7 +135,7 @@ const Choice = () => {
       // Message: Invalid number of cards were selected
       return
     }
-        console.log('DOES THIS PASS HEEREERERERERERE');
+ 
 
     // returns false if group type is invalid
     const groupType = checkAndDetermindGroupType(cardsSelected)
@@ -143,6 +143,7 @@ const Choice = () => {
       // Message: Invalid card groupings. Take a look at the possible combinations
       return
     }
+       
 
     const highestCard = (groupType === 'full house' || groupType === 'four of a kind') ? getHighestPriorityCardThatMattersForFullHouseAndFourKinds(cardsSelected) : cardsSelected[cardsSelected.length - 1]
     if (cardsOnTableCount === 0) {
@@ -150,14 +151,39 @@ const Choice = () => {
       // computer turn/plays
     }
 
+      
+
     if (groupType !== onTableGroupType) {
-      let groupTypeRanking = {'straight flushing': 1, 'for of a kind': 2, 'full house': 3, 'flush': 4, 'straight': 5}
+      // The single or double that was selected is not of the same type as the table's cards
+      if (groupType === 'single' || groupType === 'double') return;
+      // the table has a single or a double and the player doesn't 
+      if (onTableGroupType === 'single' || onTableGroupType === 'double')
+        return;
+    }
+
+    // Groups are not of the same types and cards on table and hand are 5 card groups
+    if ( groupType !== onTableGroupType) {
+      let groupTypeRanking = {
+        'straight flushing': 5,
+        'for of a kind': 4,
+        'full house': 3,
+        "flush": 2,
+        "straight": 1,
+      };
+
       if (groupTypeRanking[groupType] < groupTypeRanking[onTableGroupType]) {
         // This grouping of cards is of a lower rank than the one on the table
         return;
+      } else {
+        // The selected cards are of a higher ranking than the tables
+         placeCards(dispatch, cardsSelected, groupType, highestCard);
       }
     }
 
+    
+    console.log('DOES THIS PASS HEEREERERERERERE:', groupType);
+    
+    // These have the same group types 
     // check for higher lvl group
     if (highestCard.id > highestCardIdOnTable) {
       placeCards(dispatch, cardsSelected, groupType, highestCard);
