@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomizeCard from '../Card'
+import CustomizeCard from '../CustomizeCard'
 import deck from '../../Data/card'
 
 let dummyCards = deck.slice(0,5);

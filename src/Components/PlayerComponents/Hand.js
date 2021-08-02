@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomizeCard from '../Card';
+import CustomizeCard from '../CustomizeCard';
 import { useSelector } from 'react-redux';
 
 const Cards = () => {
