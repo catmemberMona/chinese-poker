@@ -4,6 +4,7 @@ const GET_PLACED_DOWN_CARDS = 'GET_PLACED_DOWN_CARDS';
 // Create actions
 export const updateCardsOnTable = (cards) => ({ type: GET_PLACED_DOWN_CARDS, cards });
 
+// change to object with hand cards data
 var initialState = []
 
 

@@ -1,6 +1,7 @@
 import { elementalImages, nameImages } from "./images";
 
-function CardData(){
+function CardData() {
+  this.id = 0.0
   this.name = "";
   this.priority = 0;
   this.nameImage = "";
@@ -40,6 +41,8 @@ const createDeck = () => {
         default:
           newCardData.typePriority = 0.1;
       }
+
+      newCardData.id = newCardData.priority + newCardData.typePriority;
 
       deckData.push(newCardData);
     }

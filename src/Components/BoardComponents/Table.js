@@ -10,7 +10,7 @@ const Cards = () => {
       {
         dummyCards.map(card => {
           return (
-            <CustomizeCard key={card.priority + card.typePriority}
+            <CustomizeCard key={card.id}
               cardSize={styles.card}
               cardInner={styles.cardInner}
               card={card}

@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CustomizeCard from '../CustomizeCard';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  addSelectedCard,
+  removeCardSelected,
+} from '../../store/reducers/playerReducer';
 
 const Cards = () => {
+  let dispatch = useDispatch()
   let cards = useSelector((state) => state.player.hand)
+  let cardsSelected = useSelector((state) => state.player.cardsSelected);
+
+  const selectCard = (card) => {
+    if (!cardsSelected.includes(card)) {
+      dispatch(addSelectedCard(card))
+    } else {
+      dispatch(removeCardSelected(card))
+    }
+  }
+
+  console.log("CARDS THAT WERE PREVIOUSLY SELECTED:", cardsSelected)
+
   return (
     <div style={styles.cards}>
       <ul style={{flex:1}}>
       {cards.map((card) => {
         return (
-          <li style={styles.item} key={card.priority + card.typePriority}>
+          <li style={styles.item} key={card.id} onClick={()=>selectCard(card)}>
             <CustomizeCard
               cardSize={styles.card}
               cardInner={styles.cardInner}

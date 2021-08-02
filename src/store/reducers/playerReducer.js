@@ -32,9 +32,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, cardsSelected: [...state.cardsSelected, action.card] };
     case REMOVE_SELECTED_CARD:
       const index = state.cardsSelected.indexOf(action.card);
-      const selected = index
-        ? state.cardsSelected.splice(index, 1)
-        : state.cardsSelected;
+      const selected = state.cardsSelected.filter((card => card.id !== action.card.id) )
       return { ...state, cardsSelected: [...selected] };
     default:
       return state;
