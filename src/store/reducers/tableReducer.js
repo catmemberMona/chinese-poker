@@ -2,16 +2,25 @@
 const GET_PLACED_DOWN_CARDS = 'GET_PLACED_DOWN_CARDS';
 
 // Create actions
-export const updateCardsOnTable = (cards) => ({ type: GET_PLACED_DOWN_CARDS, cards });
+export const updateCardsOnTable = (cardsStat) => ({
+  type: GET_PLACED_DOWN_CARDS,
+  cardsStat,
+});
 
 // change to object with hand cards data
-var initialState = []
+var initialState = {
+  cards: [],
+  groupType: "",
+  sumPriority: 0,
+  highestCardId: 0,
+  totalCards: 0
+}
 
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PLACED_DOWN_CARDS:
-      return [...action.cards]
+      return { ...action.cardsStat };
     default:
       return state;
   }
