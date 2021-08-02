@@ -33,6 +33,26 @@ const isFlush = (cardsSelected) => {
   return true
 };
 
+const getHighestPriorityCardThatMattersForFullHouseAndFourKinds = (cardsSelected) => {
+  let cardNames = {};
+  for (const card of cardsSelected) {
+    if (!cardNames[card.name]) {
+      cardNames[card.name] = 1;
+    } else {
+      cardNames[card.name] += 1;
+    }
+  }
+
+  // keys and values
+  let pairs = Object.entries(cardNames);
+  const cardName = (pairs[0][1] > pairs[1][1]) ? pairs[0][0] : pairs[1][0];
+  // return highest card id
+  const cards = cardsSelected.filter(card => card.name === cardNames)
+  return cards[cards.length - 1]
+};
+
+
+
 const isFourOfAKindOrFullHouse = (cardsSelected) => {
   let cardNames = {}
   let typeCount = 0
@@ -78,13 +98,13 @@ const checkAndDetermindGroupType = (cardsSelected) => {
   
 }
 
-const placeCards = (dispatch, cardsSelected, groupType) => {
+const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
   // calculations
   let groupStats = {
     cards: cardsSelected,
     groupType: groupType,
     sumPriority: caluclateSumOfPriorities(cardsSelected),
-    highestCardId: cardsSelected[cardsSelected.length - 1].id,
+    highestCardId: highestCard.id,
     totalCards: cardsSelected.length,
   };
   console.log("DOES THIS WORK? GROUP STATS:", groupStats)
@@ -98,7 +118,10 @@ const Choice = () => {
   cardsSelected.sort((a,b) => a.priority - b.priority)
   const selectedCardsCount = cardsSelected.length
 
-  const cardsOnTableCount = useSelector(state => state.table.totalCards)
+  const table = useSelector((state) => state.table);
+  const cardsOnTableCount = table.totalCards
+  const highestCardIdOnTable = table.highestCardId;
+  const onTableGroupType = table.groupType;
 
   console.log("CARDS ON TABLE:", cardsOnTableCount)
 
@@ -121,17 +144,24 @@ const Choice = () => {
       return
     }
 
+    const highestCard = (groupType === 'full house' || groupType === 'four of a kind') ? getHighestPriorityCardThatMattersForFullHouseAndFourKinds(cardsSelected) : cardsSelected[cardsSelected.length - 1]
     if (cardsOnTableCount === 0) {
-      placeCards(dispatch, cardsSelected, groupType);
+      placeCards(dispatch, cardsSelected, groupType, highestCard);
       // computer turn/plays
     }
 
-    if (cardsOnTableCount !== selectedCardsCount) {
-      // update message 
+    if (groupType !== onTableGroupType) {
+      // This grouping of cards is not the same as the one on the table
       return 
     }
 
-
+    // check for higher lvl group
+    if (highestCard.id > highestCardIdOnTable) {
+      placeCards(dispatch, cardsSelected, groupType, highestCard);
+    } else {
+      // message: Select cards that have a higher rank than the ones on the table
+      return
+    }
 
 
   }
