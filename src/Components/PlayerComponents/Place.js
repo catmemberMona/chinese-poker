@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCardsOnTable } from '../../store/reducers/tableReducer';
+import { removedPlaceDownCards } from '../../store/reducers/playerReducer'
 
 
 const caluclateSumOfPriorities = (cardsSelected) => {
@@ -110,6 +111,10 @@ const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
   };
   console.log('DOES THIS WORK? GROUP STATS:', groupStats);
   dispatch(updateCardsOnTable(groupStats));
+  dispatch(removedPlaceDownCards(cardsSelected));
+
+  // deselect cards 
+  
 };
 
 
