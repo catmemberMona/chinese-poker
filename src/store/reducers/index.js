@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 
 import table from './tableReducer'
 import player from './playerReducer'
+import computer from './computerReducer'
 
 const RESET = 'RESET'
 
@@ -11,7 +12,8 @@ export const resetGame = () => ({type: RESET})
 const appReducer = combineReducers({
   game,
   table,
-  player
+  player,
+  computer
 
 });
 

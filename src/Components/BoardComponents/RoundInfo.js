@@ -4,18 +4,20 @@ import { Card } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFirstGameStateToFalse, toggleInGameState } from '../../store/reducers/gameReducer';
 import { givePlayerStack } from '../../store/reducers/playerReducer';
+import { giveComputerStack } from '../../store/reducers/computerReducer'
 import { resetGame } from '../../store/reducers';
 
 import createDeck from '../../Data/card'
 
 const PlayersInfo = () => {
   let cardsRemainingCountForPlayer = useSelector(state => state.player.cardsLeft)
+  let cardsRemainingCountForComputer = useSelector(state => state.computer.cardsLeft)
 
   return (
     <div style={styles.playersInfo}>
       <div>
         <Card style={styles.card} raised={true}>
-          <p>26</p>
+          <p>{cardsRemainingCountForComputer}</p>
         </Card>
         <p style={styles.playerName}>Amber the Computer</p>
       </div>
@@ -75,6 +77,7 @@ const RoundInfo = () => {
     let [computerStack, playerStack] = shuffleAndSeperateCards(deck)
     // dispatch to computer and player card stacks 
     dispatch(givePlayerStack(playerStack))
+    dispatch(giveComputerStack(computerStack))
 
     // asign first player by who has the smallest 3
 
