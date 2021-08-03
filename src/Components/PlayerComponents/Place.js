@@ -2,6 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCardsOnTable } from '../../store/reducers/tableReducer';
 import { removedPlaceDownCards } from '../../store/reducers/playerReducer'
+import {
+  toggleInGameState,
+  setToComputersTurn,
+} from '../../store/reducers/gameReducer';
+import computer from '../../Computer';
 
 
 const caluclateSumOfPriorities = (cardsSelected) => {
@@ -72,7 +77,7 @@ const isFourOfAKindOrFullHouse = (cardsSelected) => {
     return 'full house';
 };
 
-const checkAndDetermindGroupType = (cardsSelected) => {
+export const checkAndDetermindGroupType = (cardsSelected) => {
   if (cardsSelected.length === 1) return 'single';
   if (
     cardsSelected.length === 2 &&
@@ -100,7 +105,7 @@ const checkAndDetermindGroupType = (cardsSelected) => {
   return false;
 };
 
-const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
+export const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
   // calculations
   let groupStats = {
     cards: cardsSelected,
@@ -111,7 +116,7 @@ const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
   };
   console.log('DOES THIS WORK? GROUP STATS:', groupStats);
   dispatch(updateCardsOnTable(groupStats));
-  dispatch(removedPlaceDownCards(cardsSelected));
+ 
 
   // deselect cards 
   
@@ -122,9 +127,15 @@ const Place = () => {
 
   const dispatch = useDispatch();
   // player's hand
+  const playerRemainingCardCount = useSelector(state => state.player.cardsLeft)
   const cardsSelected = useSelector((state) => state.player.cardsSelected);
   cardsSelected.sort((a, b) => a.priority - b.priority);
   const selectedCardsCount = cardsSelected.length;
+
+  // computer
+  const computerHand = useSelector((state) => state.computer.hand);
+  
+
 
   const table = useSelector((state) => state.table);
   const cardsOnTableCount = table.totalCards;
@@ -132,6 +143,7 @@ const Place = () => {
   const onTableGroupType = table.groupType;
 
   console.log('CARDS ON TABLE:', cardsOnTableCount);
+
 
   const checkCards = () => {
     if (selectedCardsCount === 0) {
@@ -163,6 +175,7 @@ const Place = () => {
         : cardsSelected[cardsSelected.length - 1];
     if (cardsOnTableCount === 0) {
       placeCards(dispatch, cardsSelected, groupType, highestCard);
+       dispatch(removedPlaceDownCards(cardsSelected));
       // computer turn/plays
     }
 
@@ -190,6 +203,7 @@ const Place = () => {
       } else {
         // The selected cards are of a higher ranking than the tables
         placeCards(dispatch, cardsSelected, groupType, highestCard);
+        dispatch(removedPlaceDownCards(cardsSelected));
       }
     } else {
       // group type is equal, place higher rank
@@ -208,13 +222,23 @@ const Place = () => {
        // check for higher lvl group
        if (highestCard.id > highestCardIdOnTable) {
          placeCards(dispatch, cardsSelected, groupType, highestCard);
+        dispatch(removedPlaceDownCards(cardsSelected));
        } else {
          // message: Select cards that have a higher rank than the ones on the table
          return;
        }
     }
 
-   
+    // The cards are either valid or not vaild 
+    if (playerRemainingCardCount === 0) {
+      dispatch(toggleInGameState());
+      // Message: You Won!
+      return
+    }
+    
+    // Computers Turn
+  
+    dispatch(setToComputersTurn());
   };
 
   return (

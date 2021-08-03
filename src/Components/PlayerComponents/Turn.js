@@ -1,7 +1,13 @@
 import React from 'react';
 import Place from './Place'
 import { useDispatch, useSelector } from 'react-redux';
-import {updateCardsOnTable, clearTable} from '../../store/reducers/tableReducer'
+import { updateCardsOnTable, clearTable } from '../../store/reducers/tableReducer'
+import {
+  toggleInGameState,
+  setToComputersTurn,
+} from '../../store/reducers/gameReducer';
+import computer from '../../Computer';
+
 
 
 const Message = () => {
@@ -11,22 +17,38 @@ const Message = () => {
 }
 
 const Choice = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  // computer
+  const computerHand = useSelector((state) => state.computer.hand);
+  const table = useSelector((state) => state.table);
+
+  //
+
+    const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
+    const isInPlay = useSelector((state) => state.game.isInPlay);
+  if (!isPlayersTurn && isInPlay) {
+    computer.computerPlays(table, computerHand, dispatch);
+  }
 
   const passTurn = () => {
     // remove cards on table
-    dispatch(clearTable())
-    
-    // computer can play any card it wants 
-  }
-  
+    dispatch(clearTable());
+
+    // computer can play any card it wants
+    // Computers Turn
+    computer.computerPlays(table, computerHand, dispatch);
+  };
+
   return (
     <div style={styles.choice}>
       <Place />
-      <button style={styles.buttons} onClick={passTurn}>Pass</button>
+      <button style={styles.buttons} onClick={passTurn}>
+        Pass
+      </button>
     </div>
   );
-}
+};
 
 const Turn = () => {
   return <div style={styles.turn}>
