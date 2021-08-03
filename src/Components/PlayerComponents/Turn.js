@@ -11,8 +11,10 @@ import computer from '../../Computer';
 
 
 const Message = () => {
+  let message = useSelector(state => state.player.message)
+
   return <div style={styles.message}>
-    <p style={styles.text}>This is your turn. Select and place your card(s).</p>
+    <p style={styles.text}>{ message}</p>
   </div>
 }
 
@@ -23,14 +25,12 @@ const Choice = () => {
   const computerHand = useSelector((state) => state.computer.hand);
   const table = useSelector((state) => state.table);
 
-  //
-
   const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
   const isInPlay = useSelector((state) => state.game.isInPlay);
   
   // Should be called when re-rendered after dispatching new state of isPlayersTurn
   if (!isPlayersTurn && isInPlay) {
-        console.log('THIS IS NOW THE COMPUTERS TURN');
+    console.log('THIS IS NOW THE COMPUTERS TURN');
     computer.computerPlays(table, computerHand, dispatch);
   }
 

@@ -3,7 +3,7 @@ import { Card } from '@material-ui/core';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setFirstGameStateToFalse, toggleInGameState } from '../../store/reducers/gameReducer';
-import { givePlayerStack } from '../../store/reducers/playerReducer';
+import { givePlayerStack, updateMessage } from '../../store/reducers/playerReducer';
 import { giveComputerStack } from '../../store/reducers/computerReducer'
 import { resetGame } from '../../store/reducers';
 
@@ -80,6 +80,7 @@ const RoundInfo = () => {
     dispatch(giveComputerStack(computerStack.sort((a, b) => a.id - b.id)));
 
     // asign first player by who has the smallest 3
+    dispatch(updateMessage("The computer started first. Select and place your card(s)."))
 
   }
 

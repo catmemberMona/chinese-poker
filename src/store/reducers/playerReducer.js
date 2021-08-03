@@ -4,6 +4,7 @@ const REMOVE_SELECTED_CARD = 'REMOVE_SELECTED_CARD';
 const GET_INITIAL_HAND = 'GET_INITIAL_HAND';
 const REMOVE_SELECTED_CARDS_AFTER_PLACING_THEM =
   'REMOVE_SELECTED_CARDS_AFTER_PLACING_THEM';
+const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 
 // Create actions
 export const addSelectedCard = (card) => ({
@@ -25,10 +26,13 @@ export const removedPlaceDownCards = (cards) => ({
   type: REMOVE_SELECTED_CARDS_AFTER_PLACING_THEM, cards
 })
 
+export const updateMessage = (text) => ({ type: UPDATE_MESSAGE, text});
+
 var initialState = {
   hand: [],
   cardsLeft: 0,
   cardsSelected: [],
+  message: "Press Start Game"
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,7 +47,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, cardsSelected: [...selected] };
     case REMOVE_SELECTED_CARDS_AFTER_PLACING_THEM:
       const newHand = state.hand.filter(card => !action.cards.includes(card))
-      return {...state, hand: [...newHand], cardsLeft: newHand.length, cardsSelected: []}
+      return { ...state, hand: [...newHand], cardsLeft: newHand.length, cardsSelected: [] }
+    case UPDATE_MESSAGE:
+      return {...state, message: action.text}
     default:
       return state;
   }

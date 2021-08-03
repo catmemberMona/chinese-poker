@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCardsOnTable } from '../../store/reducers/tableReducer';
-import { removedPlaceDownCards } from '../../store/reducers/playerReducer'
+import { removedPlaceDownCards, updateMessage } from '../../store/reducers/playerReducer'
 import {
   toggleInGameState,
   setToComputersTurn,
@@ -151,7 +151,7 @@ const Place = () => {
 
   const checkCards = () => {
     if (selectedCardsCount === 0) {
-      // Message that no cards are selected. Select cards or Pass your turn
+      dispatch(updateMessage('No cards are selected. Select card(s) or pass your turn.')); 
       return;
     }
 
@@ -161,6 +161,7 @@ const Place = () => {
       selectedCardsCount === 3
     ) {
       // Message: Invalid number of cards were selected
+      dispatch(updateMessage('An invalid number of cards were selected'));
       return;
     }
 
@@ -168,6 +169,11 @@ const Place = () => {
     const groupType = checkAndDetermindGroupType(cardsSelected);
     if (groupType === false) {
       // Message: Invalid card groupings. Take a look at the possible combinations
+      dispatch(
+        updateMessage(
+          'This is not a possible combination. Possible combinations are: Single, Double, Straight, Flush, Full House, Four Of A Kind, or Straight Flush.'
+        )
+      );
       return;
     }
 
@@ -186,9 +192,7 @@ const Place = () => {
       placeCards(dispatch, cardsSelected, groupType, highestCard);
       dispatch(removedPlaceDownCards(cardsSelected));
       dispatch(setToComputersTurn());
-      // computer turn/plays
-
-      console.log("PLAYER PLAYED CARDS AFTER COMPUTER PASSED")
+    
     }
 
     if (groupType !== onTableGroupType) {
@@ -236,6 +240,7 @@ const Place = () => {
         dispatch(removedPlaceDownCards(cardsSelected));
       } else {
         // message: Select cards that have a higher rank than the ones on the table
+        dispatch(updateMessage("The card combination you selected is of a lower rank than the one on the table."))
         return;
       }
     }
@@ -244,10 +249,13 @@ const Place = () => {
     if (playerRemainingCardCount === 0) {
       dispatch(toggleInGameState());
       // Message: You Won!
+      dispatch(updateMessage("You Won! Play Again?"))
       return;
+    } else {
+      // Computers Turn
+      dispatch(setToComputersTurn());
+      dispatch(updateMessage(''));
     }
-    // Computers Turn
-    dispatch(setToComputersTurn());
   };
 
   return (
