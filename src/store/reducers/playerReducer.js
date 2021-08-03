@@ -26,7 +26,7 @@ export const removedPlaceDownCards = (cards) => ({
   type: REMOVE_SELECTED_CARDS_AFTER_PLACING_THEM, cards
 })
 
-export const update_message = (text) => ({ type: UPDATE_MESSAGE, text});
+export const updateMessage = (text) => ({ type: UPDATE_MESSAGE, text});
 
 var initialState = {
   hand: [],

@@ -8,6 +8,7 @@ import {
   placeCards,
   checkAndDetermindGroupType,
 } from './Components/PlayerComponents/Place';
+import { updateMessage } from './store/reducers/playerReducer';
 
 const pickASingle = (hand, tableId) => {
 
@@ -101,6 +102,12 @@ function Computer() {
     if (hand.length - cards.length === 0) {
       dispatch(toggleInGameState());
       // MESSAGE COMPUTER WON
+      dispatch(updateMessage("The computer won! Play Again?"))
+    }
+
+    if (cards.length === 0) {
+      // No card combinations are available 
+      dispatch(updateMessage("The computer passed it's turn. Place any valid card(s)."))
     }
 
     // It's Player's turn
