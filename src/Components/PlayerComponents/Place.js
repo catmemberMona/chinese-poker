@@ -11,7 +11,8 @@ import computer from '../../Computer';
 
 const caluclateSumOfPriorities = (cardsSelected) => {
   let sum = 0;
-  for (let card of cardsSelected) {
+
+  for (const card of cardsSelected) {
     sum += card.priority;
   }
   return sum;
@@ -83,11 +84,7 @@ export const checkAndDetermindGroupType = (cardsSelected) => {
     cardsSelected.length === 2 &&
     cardsSelected[0].priority === cardsSelected[1].priority
   ) {
-    console.log(
-      'ARE THESE THE SAME:',
-      cardsSelected[0].priority,
-      cardsSelected[1].priority
-    );
+    
     return 'double';
   }
 
@@ -114,7 +111,7 @@ export const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
     highestCardId: highestCard.id,
     totalCards: cardsSelected.length,
   };
-  console.log('DOES THIS WORK? GROUP STATS:', groupStats);
+
   dispatch(updateCardsOnTable(groupStats));
  
 
@@ -124,26 +121,33 @@ export const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
 
 
 const Place = () => {
-
   const dispatch = useDispatch();
   // player's hand
-  const playerRemainingCardCount = useSelector(state => state.player.cardsLeft)
+  const playerRemainingCardCount = useSelector(
+    (state) => state.player.cardsLeft
+  );
   const cardsSelected = useSelector((state) => state.player.cardsSelected);
   cardsSelected.sort((a, b) => a.priority - b.priority);
   const selectedCardsCount = cardsSelected.length;
 
   // computer
   const computerHand = useSelector((state) => state.computer.hand);
-  
-
 
   const table = useSelector((state) => state.table);
   const cardsOnTableCount = table.totalCards;
   const highestCardIdOnTable = table.highestCardId;
   const onTableGroupType = table.groupType;
 
-  console.log('CARDS ON TABLE:', cardsOnTableCount);
+      const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
+      const isInPlay = useSelector((state) => state.game.isInPlay);
 
+  // Should be called when re-rendered after dispatching new state of isPlayersTurn
+  if (!isPlayersTurn && isInPlay) {
+    console.log("THIS IS NOW THE COMPUTERS TURN")
+    computer.computerPlays(table, computerHand, dispatch);
+  }
+
+  console.log('CARDS ON TABLE:', cardsOnTableCount);
 
   const checkCards = () => {
     if (selectedCardsCount === 0) {
@@ -167,16 +171,24 @@ const Place = () => {
       return;
     }
 
-    const highestCard =
-      groupType === 'full house' || groupType === 'four of a kind'
-        ? getHighestPriorityCardThatMattersForFullHouseAndFourKinds(
-            cardsSelected
+    let highestCard = 0
+    if (
+      groupType === 'full house' || groupType === 'four of a kind') {
+      getHighestPriorityCardThatMattersForFullHouseAndFourKinds(
+            highestCard = cardsSelected
           )
-        : cardsSelected[cardsSelected.length - 1];
+    } else {
+        highestCard = cardsSelected[cardsSelected.length - 1];
+      }
+      
+    
     if (cardsOnTableCount === 0) {
       placeCards(dispatch, cardsSelected, groupType, highestCard);
-       dispatch(removedPlaceDownCards(cardsSelected));
+      dispatch(removedPlaceDownCards(cardsSelected));
+      dispatch(setToComputersTurn());
       // computer turn/plays
+
+      console.log("PLAYER PLAYED CARDS AFTER COMPUTER PASSED")
     }
 
     if (groupType !== onTableGroupType) {
@@ -208,36 +220,33 @@ const Place = () => {
     } else {
       // group type is equal, place higher rank
       // check count of 5
-      // if straight, double or single -> check for higher priority 
+      // if straight, double or single -> check for higher priority
       // if flush -> check for higher type priority first
       // if full house -> get the ones with three of a kind and check highest id/priority
       // if four of a kind -> get the fours and check highest priority
-      // if flushing straight -> check flush and straight 
-      
+      // if flushing straight -> check flush and straight
 
       // check count less than 5
-       console.log('DOES THIS PASS HEEREERERERERERE:', groupType);
+      // console.log('DOES THIS PASS HEEREERERERERERE:', groupType);
 
-       // These are for single, double, straight, straight flush, 
-       // check for higher lvl group
-       if (highestCard.id > highestCardIdOnTable) {
-         placeCards(dispatch, cardsSelected, groupType, highestCard);
+      // These are for single, double, straight, straight flush,
+      // check for higher lvl group
+      if (highestCard.id > highestCardIdOnTable) {
+        placeCards(dispatch, cardsSelected, groupType, highestCard);
         dispatch(removedPlaceDownCards(cardsSelected));
-       } else {
-         // message: Select cards that have a higher rank than the ones on the table
-         return;
-       }
+      } else {
+        // message: Select cards that have a higher rank than the ones on the table
+        return;
+      }
     }
 
-    // The cards are either valid or not vaild 
+    // The cards are either valid or not vaild
     if (playerRemainingCardCount === 0) {
       dispatch(toggleInGameState());
       // Message: You Won!
-      return
+      return;
     }
-    
     // Computers Turn
-  
     dispatch(setToComputersTurn());
   };
 

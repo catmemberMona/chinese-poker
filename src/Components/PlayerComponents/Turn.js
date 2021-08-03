@@ -25,19 +25,19 @@ const Choice = () => {
 
   //
 
-    const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
-    const isInPlay = useSelector((state) => state.game.isInPlay);
+  const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
+  const isInPlay = useSelector((state) => state.game.isInPlay);
+  
+  // Should be called when re-rendered after dispatching new state of isPlayersTurn
   if (!isPlayersTurn && isInPlay) {
+        console.log('THIS IS NOW THE COMPUTERS TURN');
     computer.computerPlays(table, computerHand, dispatch);
   }
 
   const passTurn = () => {
     // remove cards on table
     dispatch(clearTable());
-
-    // computer can play any card it wants
-    // Computers Turn
-    computer.computerPlays(table, computerHand, dispatch);
+    dispatch(setToComputersTurn());
   };
 
   return (

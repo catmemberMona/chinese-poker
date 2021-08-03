@@ -9,39 +9,83 @@ import {
   checkAndDetermindGroupType,
 } from './Components/PlayerComponents/Place';
 
+const pickASingle = (hand, tableId) => {
 
+  if (!tableId) return [hand[0]]
+
+  for (let i = 0; i < hand.length; i++){
+    if (hand[i].id > tableId) return [hand[i]]
+  }
+
+  return []
+}
+
+const pickDoubles = (hand, tableHighestCardId) => {
+
+  let cardNames = {};
+
+  for (const card of hand) {
+    if (!cardNames[card.name]) {
+      cardNames[card.name] = {count: 1, cards: [card]}
+    } else {
+      cardNames[card.name].count += 1
+      cardNames[card.name].cards.push(card)
+    }
+  }
+
+  // keys and values
+  let cardsNamesWithMoreThanOne = Object.entries(cardNames);
+  let double = []
+  for (let cardName of cardsNamesWithMoreThanOne) {
+    const cards = cardName[1].cards;
+    if (cards[cards.length - 1].id > tableHighestCardId) {
+      double = [cards[cards.length - 2], cards[cards.length - 1]]
+    }
+  }
+
+  return double
+
+}
 
 function Computer() {
   
 
   this.playWithNoConditions = function (hand) {
     // easy mode - plays single card
-    return [hand[0]];
+    return pickASingle(hand)
+  };
+
+  this.playWithConditions = function (table, hand) {
+  
+    switch (table.groupType) {
+      case 'single':
+        return pickASingle(hand, table.highestCardId);
+      case 'double':
+        return pickDoubles(hand, table.highestCardId);
+      default:
+        return []
+    }
   };
   
   this.computerPlays = function (table, hand, dispatch) {
     let cards = []
-          console.log(
-            'THE COMPUTER IS PLAYING AFTER PLAYER SKIPS:',
-            table,
-            hand
-          );
+
     if (table.cards.length === 0) {
-      console.log("THE COMPUTER IS PLAYING AFTER PLAYER SKIPS:", "Table:", table, "HAND:", hand)
+      // console.log("THE COMPUTER IS PLAYING AFTER PLAYER SKIPS:", "Table:", table, "HAND:", hand)
       cards = this.playWithNoConditions(hand);
     } else {
-      // cards = playWithConditions()
+      cards = this.playWithConditions(table, hand)
     }
 
     if (cards.length === 0) {
-      // computer can not find any cards that are better
+      // computer can not find any cards that are better than the one on the table
       dispatch(clearTable())
-      // Message: Computer passed it's turn. Play any card(s) that are valid.
+      // Message: Computer passed it's turn. You can play any card(s) that are valid.
 
     } else {
-        const groupType = checkAndDetermindGroupType(cards);
-        const highestCard = cards[cards.length - 1];
-      console.log("CARDS THAT COMPUTER PICKED:", cards)
+      const groupType = checkAndDetermindGroupType(cards);
+      const highestCard = cards[cards.length - 1];
+      // console.log("CARDS THAT COMPUTER PICKED:", cards)
       placeCards(dispatch, cards, groupType, highestCard);
       dispatch(removedPlaceDownCardsFromComputer(cards));
 
@@ -51,18 +95,11 @@ function Computer() {
       dispatch(toggleInGameState());
       // MESSAGE COMPUTER WON
     }
-    // IT's Player's turn
+
+    // It's Player's turn
     dispatch(setToPlayersTurn());
+    // console.log("wAS THIS EVER SET TO PLAYERS TURN?")
   }
-
-
-
-  // this.playWithConditions = function () {
-
-  // }
-
-
-  
 };
 
 let computer = new Computer();
