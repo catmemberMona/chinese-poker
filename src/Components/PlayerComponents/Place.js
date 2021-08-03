@@ -251,11 +251,11 @@ const Place = () => {
       // Message: You Won!
       dispatch(updateMessage("You Won! Play Again?"))
       return;
+    } else {
+      // Computers Turn
+      dispatch(setToComputersTurn());
+      dispatch(updateMessage(''));
     }
-
-    // Computers Turn
-    dispatch(setToComputersTurn());
-    dispatch(updateMessage(""))
   };
 
   return (
