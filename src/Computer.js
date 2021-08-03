@@ -83,15 +83,20 @@ function Computer() {
       // Message: Computer passed it's turn. You can play any card(s) that are valid.
 
     } else {
-      const groupType = checkAndDetermindGroupType(cards);
-      const highestCard = cards[cards.length - 1];
-      // console.log("CARDS THAT COMPUTER PICKED:", cards)
-      placeCards(dispatch, cards, groupType, highestCard);
-      dispatch(removedPlaceDownCardsFromComputer(cards));
+
+      setTimeout(function () {
+        console.log("PREVIOUSLY GOT AN ERROR HERE BECAUSE OF NO PRIORITY FOR THESE CARDS:", cards)
+        const groupType = checkAndDetermindGroupType(cards);
+        const highestCard = cards[cards.length - 1];
+        // console.log("CARDS THAT COMPUTER PICKED:", cards)
+        placeCards(dispatch, cards, groupType, highestCard);
+        dispatch(removedPlaceDownCardsFromComputer(cards));
+      }, 1000);
+     
 
     }
 
-    if (hand.length === 0) {
+    if (hand.length - cards.length === 0) {
       dispatch(toggleInGameState());
       // MESSAGE COMPUTER WON
     }
