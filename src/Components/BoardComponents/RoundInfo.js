@@ -76,8 +76,8 @@ const RoundInfo = () => {
 
     let [computerStack, playerStack] = shuffleAndSeperateCards(deck)
     // dispatch to computer and player card stacks 
-    dispatch(givePlayerStack(playerStack))
-    dispatch(giveComputerStack(computerStack))
+    dispatch(givePlayerStack(playerStack.sort((a, b) => a.id - b.id)));
+    dispatch(giveComputerStack(computerStack.sort((a, b) => a.id - b.id)));
 
     // asign first player by who has the smallest 3
 
