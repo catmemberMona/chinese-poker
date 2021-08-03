@@ -191,18 +191,30 @@ const Place = () => {
         // The selected cards are of a higher ranking than the tables
         placeCards(dispatch, cardsSelected, groupType, highestCard);
       }
-    }
-
-    console.log('DOES THIS PASS HEEREERERERERERE:', groupType);
-
-    // These have the same group types
-    // check for higher lvl group
-    if (highestCard.id > highestCardIdOnTable) {
-      placeCards(dispatch, cardsSelected, groupType, highestCard);
     } else {
-      // message: Select cards that have a higher rank than the ones on the table
-      return;
+      // group type is equal, place higher rank
+      // check count of 5
+      // if straight, double or single -> check for higher priority 
+      // if flush -> check for higher type priority first
+      // if full house -> get the ones with three of a kind and check highest id/priority
+      // if four of a kind -> get the fours and check highest priority
+      // if flushing straight -> check flush and straight 
+      
+
+      // check count less than 5
+       console.log('DOES THIS PASS HEEREERERERERERE:', groupType);
+
+       // These are for single, double, straight, straight flush, 
+       // check for higher lvl group
+       if (highestCard.id > highestCardIdOnTable) {
+         placeCards(dispatch, cardsSelected, groupType, highestCard);
+       } else {
+         // message: Select cards that have a higher rank than the ones on the table
+         return;
+       }
     }
+
+   
   };
 
   return (
