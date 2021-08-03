@@ -35,7 +35,12 @@ const pickDoubles = (hand, tableHighestCardId) => {
   }
 
   // keys and values
-  let cardsNamesWithMoreThanOne = Object.entries(cardNames);
+  let allCardNames = Object.entries(cardNames);
+  // filters to see that there is at least two cards of the same name
+  let cardsNamesWithMoreThanOne = allCardNames.filter(cardName => {
+    return cardName[1].count > 1
+  })
+
   let double = []
   for (let cardName of cardsNamesWithMoreThanOne) {
     const cards = cardName[1].cards;
