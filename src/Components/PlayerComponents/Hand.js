@@ -1,16 +1,42 @@
-import React from 'react';
-import CustomizeCard from '../Card';
-import deck from '../../Data/card'
+import React, { useState } from 'react';
+import CustomizeCard from '../CustomizeCard';
+import { useSelector, useDispatch } from 'react-redux';
 
-let dummyCards = deck.slice(0,26);
+import {
+  addSelectedCard,
+  removeCardSelected,
+} from '../../store/reducers/playerReducer';
 
 const Cards = () => {
+  let dispatch = useDispatch()
+  let cards = useSelector((state) => state.player.hand)
+  let cardsSelected = useSelector((state) => state.player.cardsSelected);
+
+  const selectCard = (card) => {
+    if (!cardsSelected.includes(card)) {
+      card.isSelected = true;
+      dispatch(addSelectedCard(card))
+    } else {
+      card.isSelected = false;
+      dispatch(removeCardSelected(card))
+    }
+  }
+
   return (
     <div style={styles.cards}>
       <ul style={{flex:1}}>
-      {dummyCards.map((card) => {
+      {cards.map((card) => {
         return (
-          <li style={styles.item} key={card.priority + card.typePriority}>
+          <li
+            style={{
+              ...styles.item,
+              marginTop: card.isSelected ? -10 : 0,
+              marginBottom: card.isSelected? 10 : 0,
+    
+            }}
+            key={card.id}
+            onClick={() => selectCard(card)}
+          >
             <CustomizeCard
               cardSize={styles.card}
               cardInner={styles.cardInner}
@@ -46,6 +72,7 @@ let styles = {
     flexWrap: 'wrap',
     marginLeft: '1.5em',
     marginRight: '1em',
+    paddingTop: '1em'
   },
   item: {
     background: 'rgba(0, 0, 0, 0)',

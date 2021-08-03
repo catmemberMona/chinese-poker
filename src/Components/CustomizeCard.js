@@ -2,16 +2,19 @@ import React from 'react'
 import { Card } from '@material-ui/core';
 
 const CustomizeCard = (props) => {
-  let { cardSize, cardInner, card } = props
+  let { cardSize, card } = props
 
   return (
-    <Card style={cardSize} raised={true}>
-      <div style={( styles.cardContent)}>
-        <div style={styles.name && styles.nameTop}>{card.name}</div>
-        <div style={styles.element}>{card.type}</div>
-        <div style={styles.name, styles.nameBottom}>{card.name}</div>
-      </div>
-    </Card>
+    <Card
+      style={{ ...cardSize, backgroundColor: card.isSelected ? 'orange' : 'white', }}
+      raised={true}
+    >
+      <div style={styles.cardContent}>
+            <div style={styles.name && styles.nameTop}>{card.name}</div>
+            <div style={styles.element}>{card.type}</div>
+            <div style={(styles.name, styles.nameBottom)}>{card.name}</div>
+          </div>
+        </Card>
   );
 };
 
@@ -21,7 +24,8 @@ let styles = {
     flexDirection: 'column',
     border: '1px black solid',
     margin: 3,
-    padding: 3
+    padding: 3,
+    backgroundColor: 'white',
   },
   name: {
     flex: 1,

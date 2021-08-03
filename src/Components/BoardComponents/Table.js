@@ -1,16 +1,16 @@
 import React from 'react';
-import CustomizeCard from '../Card'
-import deck from '../../Data/card'
-
-let dummyCards = deck.slice(0,5);
+import CustomizeCard from '../CustomizeCard'
+import { useSelector } from 'react-redux';
 
 const Cards = () => {
+  let cards = useSelector(state => state.table.cards)
+  
   return (
     <div style={styles.cards}>
       {
-        dummyCards.map(card => {
+        cards.map(card => {
           return (
-            <CustomizeCard key={card.priority + card.typePriority}
+            <CustomizeCard key={card.id}
               cardSize={styles.card}
               cardInner={styles.cardInner}
               card={card}

@@ -1,4 +1,13 @@
 import React from 'react';
+import Place from './Place'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCardsOnTable, clearTable } from '../../store/reducers/tableReducer'
+import {
+  toggleInGameState,
+  setToComputersTurn,
+} from '../../store/reducers/gameReducer';
+import computer from '../../Computer';
+
 
 
 const Message = () => {
@@ -8,11 +17,44 @@ const Message = () => {
 }
 
 const Choice = () => {
-  return <div style={styles.choice}>
-    <button style={styles.buttons}>Place</button>
-    <button style={styles.buttons}>Pass</button>
-  </div>
-}
+  const dispatch = useDispatch();
+
+  // computer
+  const computerHand = useSelector((state) => state.computer.hand);
+  const table = useSelector((state) => state.table);
+
+  //
+
+  const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
+  const isInPlay = useSelector((state) => state.game.isInPlay);
+  
+  // Should be called when re-rendered after dispatching new state of isPlayersTurn
+  if (!isPlayersTurn && isInPlay) {
+        console.log('THIS IS NOW THE COMPUTERS TURN');
+    computer.computerPlays(table, computerHand, dispatch);
+  }
+
+  const passTurn = () => {
+    // remove cards on table
+    dispatch(clearTable());
+    dispatch(setToComputersTurn());
+  };
+
+  return (
+    <div style={styles.choice}>
+      <Place />
+      <button
+        style={{
+          ...styles.buttons,
+          display: `${isInPlay ? 'block' : 'none'}`,
+        }}
+        onClick={passTurn}
+      >
+        Pass
+      </button>
+    </div>
+  );
+};
 
 const Turn = () => {
   return <div style={styles.turn}>
@@ -28,7 +70,8 @@ let styles = {
   },
   message: {
     flex: 6,
-    justifyContent: 'flex-end',
+    paddingLeft: '20vw',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   choice: {
@@ -36,9 +79,9 @@ let styles = {
     justifyContent: 'space-evenly',
   },
   text: {
-    fontSize: '.85em',
+    fontSize: '2vh',
     fontWeight: 600,
-    color: 'green',
+    color: 'brown',
 
   },
   buttons: {

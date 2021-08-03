@@ -1,12 +1,14 @@
 import { elementalImages, nameImages } from "./images";
 
-function CardData(){
+function CardData() {
+  this.id = 0.0
   this.name = "";
   this.priority = 0;
   this.nameImage = "";
   this.type = "";
   this.typePriority = 0.0;
   this.typeImage = "";
+  this.isSelected = false;
 };
 
 const createDeck = () => {
@@ -41,6 +43,8 @@ const createDeck = () => {
           newCardData.typePriority = 0.1;
       }
 
+      newCardData.id = newCardData.priority + newCardData.typePriority;
+
       deckData.push(newCardData);
     }
   }
@@ -48,6 +52,5 @@ const createDeck = () => {
   return deckData
 };
 
-const deck = createDeck()
 
-export default deck
+export default createDeck
