@@ -79,8 +79,10 @@ function Computer() {
 
     if (cards.length === 0) {
       // computer can not find any cards that are better than the one on the table
-      dispatch(clearTable())
-      // Message: Computer passed it's turn. You can play any card(s) that are valid.
+      setTimeout(function () {
+        dispatch(clearTable());
+        // Message: Computer passed it's turn. You can play any card(s) that are valid.
+      }, 2000);
 
     } else {
 
