@@ -43,7 +43,13 @@ const Choice = () => {
   return (
     <div style={styles.choice}>
       <Place />
-      <button style={styles.buttons} onClick={passTurn}>
+      <button
+        style={{
+          ...styles.buttons,
+          display: `${isInPlay ? 'block' : 'none'}`,
+        }}
+        onClick={passTurn}
+      >
         Pass
       </button>
     </div>
@@ -64,7 +70,8 @@ let styles = {
   },
   message: {
     flex: 6,
-    justifyContent: 'flex-end',
+    paddingLeft: '20vw',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   choice: {
@@ -72,9 +79,9 @@ let styles = {
     justifyContent: 'space-evenly',
   },
   text: {
-    fontSize: '.85em',
+    fontSize: '2vh',
     fontWeight: 600,
-    color: 'green',
+    color: 'brown',
 
   },
   buttons: {

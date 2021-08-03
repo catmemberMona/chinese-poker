@@ -138,8 +138,8 @@ const Place = () => {
   const highestCardIdOnTable = table.highestCardId;
   const onTableGroupType = table.groupType;
 
-      const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
-      const isInPlay = useSelector((state) => state.game.isInPlay);
+  const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
+  const isInPlay = useSelector((state) => state.game.isInPlay);
 
   // Should be called when re-rendered after dispatching new state of isPlayersTurn
   if (!isPlayersTurn && isInPlay) {
@@ -175,11 +175,11 @@ const Place = () => {
     if (
       groupType === 'full house' || groupType === 'four of a kind') {
       getHighestPriorityCardThatMattersForFullHouseAndFourKinds(
-            highestCard = cardsSelected
-          )
+        highestCard = cardsSelected
+      )
     } else {
-        highestCard = cardsSelected[cardsSelected.length - 1];
-      }
+      highestCard = cardsSelected[cardsSelected.length - 1];
+    }
       
     
     if (cardsOnTableCount === 0) {
@@ -251,7 +251,7 @@ const Place = () => {
   };
 
   return (
-    <button style={styles.buttons} onClick={checkCards}>
+    <button style={{...styles.buttons, display: `${ isInPlay ? 'block' : 'none'}`,}} onClick={checkCards}>
       Place
     </button>
   );
