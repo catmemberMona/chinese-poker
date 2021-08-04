@@ -2,7 +2,11 @@ import React from 'react';
 import { Card } from '@material-ui/core';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setFirstGameStateToFalse, toggleInGameState } from '../../store/reducers/gameReducer';
+import {
+  setFirstGameStateToFalse,
+  toggleInGameState,
+  setToPlayersTurn,
+} from '../../store/reducers/gameReducer';
 import { givePlayerStack, updateMessage } from '../../store/reducers/playerReducer';
 import { giveComputerStack } from '../../store/reducers/computerReducer'
 import { resetGame } from '../../store/reducers';
@@ -80,12 +84,25 @@ const RoundInfo = () => {
     const deck = createDeck();
 
     let [computerStack, playerStack] = shuffleAndSeperateCards(deck)
+
+    let playersHand = playerStack.sort((a, b) => a.id - b.id);
+    let computerHand = computerStack.sort((a, b) => a.id - b.id);
     // dispatch to computer and player card stacks 
-    dispatch(givePlayerStack(playerStack.sort((a, b) => a.id - b.id)));
-    dispatch(giveComputerStack(computerStack.sort((a, b) => a.id - b.id)));
+    dispatch(givePlayerStack(playersHand));
+    dispatch(giveComputerStack(computerHand));
 
     // asign first player by who has the smallest 3
-    dispatch(updateMessage("The computer started first. Select and place your card(s)."))
+    if (playersHand[0].id === 1.1) {
+      dispatch(setToPlayersTurn());
+      dispatch(updateMessage("You have the lowest ranked 3, so you can select and place your card(s) first."))
+    } else {
+      dispatch(
+        updateMessage(
+          'The computer started first. Select and place your card(s).'
+        )
+      );
+    }
+
 
   }
 
