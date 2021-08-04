@@ -191,8 +191,9 @@ const Place = () => {
     if (cardsOnTableCount === 0) {
       placeCards(dispatch, cardsSelected, groupType, highestCard);
       dispatch(removedPlaceDownCards(cardsSelected));
-      dispatch(setToComputersTurn());
-    
+
+      // check if player has won
+      hasPlayerWonOrContinue()
     }
 
     if (groupType !== onTableGroupType) {
@@ -245,18 +246,23 @@ const Place = () => {
       }
     }
 
+    hasPlayerWonOrContinue()
+    
+  };
+
+  const hasPlayerWonOrContinue = () => {
     // The cards are either valid or not vaild
-    if (playerRemainingCardCount === 0) {
+    if (playerRemainingCardCount - selectedCardsCount === 0) {
       dispatch(toggleInGameState());
       // Message: You Won!
-      dispatch(updateMessage("You Won! Play Again?"))
+      dispatch(updateMessage('You Won! Play Again?'));
       return;
     } else {
       // Computers Turn
       dispatch(setToComputersTurn());
       dispatch(updateMessage(''));
     }
-  };
+  }
 
   return (
     <button style={{...styles.buttons, display: `${ isInPlay ? 'block' : 'none'}`,}} onClick={checkCards}>
