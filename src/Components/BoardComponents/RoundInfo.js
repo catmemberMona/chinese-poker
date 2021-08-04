@@ -69,7 +69,12 @@ const RoundInfo = () => {
   let dispatch = useDispatch()
 
   const startRound = () => {
-    if (isFirstRound) dispatch(setFirstGameStateToFalse());
+    if (!isFirstRound) {
+      dispatch(resetGame());
+    
+    }
+    
+    dispatch(setFirstGameStateToFalse());
     dispatch(toggleInGameState());
 
     const deck = createDeck();
@@ -85,7 +90,7 @@ const RoundInfo = () => {
   }
 
   const reStart = () => {
-    dispatch(resetGame());
+    // dispatch(resetGame());
     startRound()
   };
 
