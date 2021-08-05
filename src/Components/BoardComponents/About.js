@@ -6,9 +6,8 @@ import mona from '../../Images/landingSection/mona.jpg'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: 'relative',
     width: '72vw',
-    minWidth: '30vw',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -160,8 +159,7 @@ let styles = {
     backgroundColor: 'tan',
   },
   container: {
-    top: '11vh',
-    left: '10vw',
+    margin: 'auto',
     flexDirection: 'column',
   },
   aboutDeveloper: {
