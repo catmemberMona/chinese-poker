@@ -40,7 +40,6 @@ const ElementalPoker = () => {
         It is based on a traditional chinese card game. Traditionally chinese
         poker is usually played with 2-4 players with a deck of 52 cards.
       </div>
-
       <div style={styles.aboutMintBean}>
         <h3 style={{ border: '1px solid black' }}>Mintbean</h3>
         <p style={{ border: '1px solid black' }}>
@@ -53,6 +52,10 @@ const ElementalPoker = () => {
             </a>
           </span>
         </p>
+      </div>
+      <div style={styles.used}>
+        <p>Created using: Create-React-App, Redux, React-Redux, Material-UI</p>
+        <p>Deployed on Github Pages</p>
       </div>
     </div>
   );
@@ -166,6 +169,10 @@ let styles = {
     justifyContent: 'space-between',
   },
   aboutMintBean: {
+    flexDirection: 'column',
+    border: '1px solid black',
+  },
+  used: {
     flexDirection: 'column',
     border: '1px solid black',
   },
