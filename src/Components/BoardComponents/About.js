@@ -87,7 +87,19 @@ const ElementalPoker = () => {
 
       <div style={styles.gameContent}>
         {gameContent}
-        <div style={styles.gameDemo}>Demo Video fdgdsfgfdsgfsgfdgfdsgfdgdsgfdgsgfsdfgfdsgfdsgfsdgdsgsfdsgfdsg</div>
+   
+        <div style={styles.gameDemo}>
+          <iframe
+            display='block'
+            width='100%'
+            height='100%'
+            src='https://www.youtube.com/embed/z35qjrkX_CY'
+            title='Demo'
+            frameBorder='0'
+            allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;'
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </div>
   );
@@ -105,7 +117,10 @@ const Developer = (props) => {
           src={mona}
           className={classes.medium}
         />
-        <div style={styles.devText}>JKFJDKSFJKFJDKSFJKDLFJKSFJFDKFJDSKFJKDSFJDSKFJKDSFJKDSFJ</div>
+        <div style={styles.devText}>
+          <p>Hello visitors!</p>
+          <p>Developing this game was a really enjoyable experience! I decided to create this based on chinese poker because it was a game the I played with my family when I was younger. It's still a game I enjoy playing.</p>
+        </div>
       </div>
     </div>
   );
@@ -166,14 +181,19 @@ let styles = {
     flex: 1,
     flexDirection: 'column',
     marginLeft: '2vw',
-    // marginTop: 0
+    alignItems: 'center',
+    borderTop: '.5px solid lightgrey',
+    marginTop: 2,
   },
   devContent: {
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   devText: {
     padding: '1vw',
     marginLeft: '4vw',
+    width: '40vw',
+    maxWidth: '50vw',
+    flexDirection: 'column',
   },
   aboutGame: {
     flex: 1,
@@ -181,11 +201,12 @@ let styles = {
     marginLeft: '2vw',
   },
   gameContent: {
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   gameText: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'column',
+    marginRight: '4vw',
   },
   gameDemo: {
     flex: 2,
@@ -198,6 +219,5 @@ let styles = {
   },
   used: {
     flexDirection: 'column',
-
   },
 };
