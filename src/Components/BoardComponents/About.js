@@ -87,7 +87,7 @@ const ElementalPoker = () => {
 
       <div style={styles.gameContent}>
         {gameContent}
-        <div style={styles.gameDemo}>Demo Video</div>
+        <div style={styles.gameDemo}>Demo Video fdgdsfgfdsgfsgfdgfdsgfdgdsgfdgsgfsdfgfdsgfdsgfsdgdsgsfdsgfdsg</div>
       </div>
     </div>
   );
@@ -98,7 +98,7 @@ const Developer = (props) => {
   return (
     <div style={styles.aboutDeveloper}>
       <h1>Mona Zheng</h1>
-      <div style={styles.image}>
+      <div style={styles.devContent}>
         <Avatar
           alt='Mona'
           variant='rounded'
@@ -168,7 +168,9 @@ let styles = {
     marginLeft: '2vw',
     // marginTop: 0
   },
-  image: {},
+  devContent: {
+    flexWrap: 'wrap'
+  },
   devText: {
     padding: '1vw',
     marginLeft: '4vw',
@@ -178,7 +180,9 @@ let styles = {
     flexDirection: 'column',
     marginLeft: '2vw',
   },
-  gameContent: {},
+  gameContent: {
+    flexWrap: 'wrap'
+  },
   gameText: {
     flex: 3,
     flexDirection: 'column',
