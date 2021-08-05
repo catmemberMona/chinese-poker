@@ -32,17 +32,17 @@ const ElementalPoker = () => {
 
   const gameContent = (
     <div style={styles.gameText}>
-      <div>
+      <p>
         Elemental Poker is a single player game where the user competes with the
         computer. Win by playing all the cards in your hand.
-      </div>
-      <div>
+      </p>
+      <p>
         It is based on a traditional chinese card game. Traditionally chinese
         poker is usually played with 2-4 players with a deck of 52 cards.
-      </div>
+      </p>
       <div style={styles.aboutMintBean}>
-        <h3 style={{ border: '1px solid black' }}>Mintbean</h3>
-        <p style={{ border: '1px solid black' }}>
+        <h3 style={{ marginTop: 5, marginBottom: 1 }}>Mintbean</h3>
+        <p>
           Elemental Poker was created during a weekly hackathon hosted by
           MintBean. Mintbean provides a supportive community for software
           developers. Learn more about this{' '}
@@ -54,8 +54,30 @@ const ElementalPoker = () => {
         </p>
       </div>
       <div style={styles.used}>
-        <p>Created using: Create-React-App, Redux, React-Redux, Material-UI</p>
-        <p>Deployed on Github Pages</p>
+        <p>
+          <span
+            style={{
+              fontWeight: 800,
+              fontSize: '1.1em',
+              fontFamily: 'Roboto, sansSerif',
+            }}
+          >
+            Created using:
+          </span>{' '}
+          Create-React-App, Redux, React-Redux, Material-UI
+        </p>
+        <p>
+          <span
+            style={{
+              fontWeight: 800,
+              fontSize: '1.1em',
+              fontFamily: 'Roboto, sansSerif',
+            }}
+          >
+            Deployed on:
+          </span>{' '}
+          Github Pages
+        </p>
       </div>
     </div>
   );
@@ -120,6 +142,7 @@ export default function Info() {
         onClose={handleClose}
         aria-labelledby='simple-modal-title'
         aria-describedby='simple-modal-description'
+        style={{overflowY: "auto"}}
       >
         {body}
       </Modal>
@@ -170,10 +193,9 @@ let styles = {
   },
   aboutMintBean: {
     flexDirection: 'column',
-    border: '1px solid black',
   },
   used: {
     flexDirection: 'column',
-    border: '1px solid black',
+
   },
 };
