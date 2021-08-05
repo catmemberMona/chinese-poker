@@ -25,7 +25,7 @@ const ElementalPoker = () => {
   const heading = (
     <div style={styles.gameHeading}>
       <h1>Elemental Poker</h1>
-      <div>Images</div>
+      {/* <div>Images</div> */}
     </div>
   );
 
@@ -149,7 +149,7 @@ export default function Info() {
   return (
     <div>
       <button type='button' style={styles.buttons} onClick={handleOpen}>
-        About the creator
+        About
       </button>
       <Modal
         open={open}

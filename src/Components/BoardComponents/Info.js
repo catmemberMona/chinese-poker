@@ -6,6 +6,7 @@ function getModalStyle() {
   return {
     top: '11vh',
     left: '10vw',
+    flexDirection: 'column',
   };
 }
 
@@ -37,9 +38,9 @@ export default function Info() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id='simple-modal-title'>Text in a modal</h2>
+      <h2 id='simple-modal-title'>Rules</h2>
       <p id='simple-modal-description'>
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        Under Construction
       </p>
     </div>
   );
@@ -47,7 +48,7 @@ export default function Info() {
   return (
     <div>
       <button type='button' style={styles.buttons} onClick={handleOpen}>
-        Info and Rules
+        Rules
       </button>
       <Modal
         open={open}
