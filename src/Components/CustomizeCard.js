@@ -11,7 +11,8 @@ const CustomizeCard = (props) => {
     >
       <div style={styles.cardContent}>
             <div style={styles.name && styles.nameTop}>{card.name}</div>
-            <div style={styles.element}>{card.type}</div>
+        <div style={styles.element}>
+          <img src={card.typeImage} width='40vw' height='40vw' /></div>
             <div style={(styles.name, styles.nameBottom)}>{card.name}</div>
           </div>
         </Card>

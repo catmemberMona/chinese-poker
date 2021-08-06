@@ -1,8 +1,11 @@
+import {air, water, earth, fire} from '../Images/elements'
+
+
 const elementalImages = {
-  air: 'air',
-  water: 'water',
-  earth: 'earth',
-  fire: 'fire',
+  air: air,
+  water: water,
+  earth: earth,
+  fire: fire,
 };
 const nameImages = {
   3: { image: '3', priority: 1 },
