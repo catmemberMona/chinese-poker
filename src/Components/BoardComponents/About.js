@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   medium: {
-    width: theme.spacing(20),
-    height: theme.spacing(20),
+    width: theme.spacing(16),
+    height: theme.spacing(16),
     border: '1px darkGrey solid',
   },
 }));
@@ -180,7 +180,6 @@ let styles = {
   aboutDeveloper: {
     flex: 1,
     flexDirection: 'column',
-    marginLeft: '2vw',
     alignItems: 'center',
     borderTop: '.5px solid lightgrey',
     marginTop: 2,
@@ -207,9 +206,11 @@ let styles = {
     flex: 2,
     flexDirection: 'column',
     marginRight: '4vw',
+    minWidth: 200,
   },
   gameDemo: {
     flex: 2,
+    minWidth: 300,
   },
   gameHeading: {
     justifyContent: 'space-between',
