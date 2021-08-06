@@ -1,12 +1,20 @@
 # Chinese Poker Application
 
+Elemental Poker is a single player game where the user competes with the computer. Win by playing all the cards in your hand.
+
+It is based on a traditional chinese card game. Traditionally chinese poker is usually played with 2-4 players with a deck of 52 cards.
+
 ## [Elemental Poker Webpage]
 
-Deployed Using Github Pages 
+Created using: Create-React-App, Redux, React-Redux, Material-UI
+
+Deployed on: Github Pages
 
 [Elemental Poker Webpage]: https://catmembermona.github.io/chinese-poker/
 
 ## Mintbean Hackathon Event
+
+Elemental Poker was created during a weekly hackathon hosted by MintBean. Mintbean provides a supportive community for software developers. Learn more about this event!
 
 ## Resources
 ### [Iconscout]
