@@ -1,13 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCardsOnTable } from '../../store/reducers/tableReducer';
-import { removedPlaceDownCards, updateMessage } from '../../store/reducers/playerReducer'
+import {
+  removedPlaceDownCards,
+  updateMessage,
+} from '../../store/reducers/playerReducer';
 import {
   toggleInGameState,
   setToComputersTurn,
 } from '../../store/reducers/gameReducer';
 import computer from '../../Computer';
-
 
 const caluclateSumOfPriorities = (cardsSelected) => {
   let sum = 0;
@@ -84,7 +86,6 @@ export const checkAndDetermindGroupType = (cardsSelected) => {
     cardsSelected.length === 2 &&
     cardsSelected[0].priority === cardsSelected[1].priority
   ) {
-    
     return 'double';
   }
 
@@ -113,12 +114,9 @@ export const placeCards = (dispatch, cardsSelected, groupType, highestCard) => {
   };
 
   dispatch(updateCardsOnTable(groupStats));
- 
 
-  // deselect cards 
-  
+  // deselect cards
 };
-
 
 const Place = () => {
   const dispatch = useDispatch();
@@ -143,7 +141,7 @@ const Place = () => {
 
   // Should be called when re-rendered after dispatching new state of isPlayersTurn
   if (!isPlayersTurn && isInPlay) {
-    console.log("THIS IS NOW THE COMPUTERS TURN")
+    console.log('THIS IS NOW THE COMPUTERS TURN');
     computer.computerPlays(table, computerHand, dispatch);
   }
 
@@ -151,7 +149,11 @@ const Place = () => {
 
   const checkCards = () => {
     if (selectedCardsCount === 0) {
-      dispatch(updateMessage('No cards are selected. Select card(s) or pass your turn.')); 
+      dispatch(
+        updateMessage(
+          'No cards are selected. Select card(s) or pass your turn.'
+        )
+      );
       return;
     }
 
@@ -177,22 +179,21 @@ const Place = () => {
       return;
     }
 
-    let highestCard = 0
-    if (
-      groupType === 'full house' || groupType === 'four of a kind') {
+    let highestCard = 0;
+    if (groupType === 'full house' || groupType === 'four of a kind') {
       getHighestPriorityCardThatMattersForFullHouseAndFourKinds(
-        highestCard = cardsSelected
-      )
+        (highestCard = cardsSelected)
+      );
     } else {
       highestCard = cardsSelected[cardsSelected.length - 1];
     }
-      
-    
+
     if (cardsOnTableCount === 0) {
       placeCards(dispatch, cardsSelected, groupType, highestCard);
       dispatch(removedPlaceDownCards(cardsSelected));
-      dispatch(setToComputersTurn());
-    
+
+      // check if player has won
+      hasPlayerWonOrContinue();
     }
 
     if (groupType !== onTableGroupType) {
@@ -240,16 +241,24 @@ const Place = () => {
         dispatch(removedPlaceDownCards(cardsSelected));
       } else {
         // message: Select cards that have a higher rank than the ones on the table
-        dispatch(updateMessage("The card combination you selected is of a lower rank than the one on the table."))
+        dispatch(
+          updateMessage(
+            'The card combination you selected is of a lower rank than the one on the table.'
+          )
+        );
         return;
       }
     }
 
+    hasPlayerWonOrContinue();
+  };
+
+  const hasPlayerWonOrContinue = () => {
     // The cards are either valid or not vaild
-    if (playerRemainingCardCount === 0) {
+    if (playerRemainingCardCount - selectedCardsCount === 0) {
       dispatch(toggleInGameState());
       // Message: You Won!
-      dispatch(updateMessage("You Won! Play Again?"))
+      dispatch(updateMessage('You Won! Play Again?'));
       return;
     } else {
       // Computers Turn
@@ -259,11 +268,14 @@ const Place = () => {
   };
 
   return (
-    <button style={{...styles.buttons, display: `${ isInPlay ? 'block' : 'none'}`,}} onClick={checkCards}>
+    <button
+      style={{ ...styles.buttons, display: `${isInPlay ? 'block' : 'none'}` }}
+      onClick={checkCards}
+    >
       Place
     </button>
   );
-}
+};
 
 let styles = {
   buttons: {
@@ -271,7 +283,8 @@ let styles = {
     height: 35,
     borderRadius: 8,
     margin: 3,
+    backgroundColor: 'rgba(210, 180, 140, 0.7)',
   },
 };
 
-export default Place
+export default Place;

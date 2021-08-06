@@ -1,9 +1,13 @@
 import React from 'react';
+import Info from './Info'
+import About from './About'
 
 const GameInfo = () => {
   return (
     <div style={styles.gameInfo}>
       <h1 style={styles.heading}>Elemental Poker</h1>
+      <Info />
+      <About />
     </div>
   )
 };
@@ -11,7 +15,9 @@ const GameInfo = () => {
 let styles = {
   gameInfo: {
     flex: 0.8,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   heading: {
     fontSize: '1.2em',

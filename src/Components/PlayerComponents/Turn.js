@@ -1,22 +1,25 @@
 import React from 'react';
-import Place from './Place'
+import Place from './Place';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCardsOnTable, clearTable } from '../../store/reducers/tableReducer'
+import {
+  updateCardsOnTable,
+  clearTable,
+} from '../../store/reducers/tableReducer';
 import {
   toggleInGameState,
   setToComputersTurn,
 } from '../../store/reducers/gameReducer';
 import computer from '../../Computer';
 
-
-
 const Message = () => {
-  let message = useSelector(state => state.player.message)
+  let message = useSelector((state) => state.player.message);
 
-  return <div style={styles.message}>
-    <p style={styles.text}>{ message}</p>
-  </div>
-}
+  return (
+    <div style={styles.message}>
+      <p style={styles.text}>{message}</p>
+    </div>
+  );
+};
 
 const Choice = () => {
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ const Choice = () => {
 
   const isPlayersTurn = useSelector((state) => state.game.isPlayersTurn);
   const isInPlay = useSelector((state) => state.game.isInPlay);
-  
+
   // Should be called when re-rendered after dispatching new state of isPlayersTurn
   if (!isPlayersTurn && isInPlay) {
     console.log('THIS IS NOW THE COMPUTERS TURN');
@@ -57,10 +60,12 @@ const Choice = () => {
 };
 
 const Turn = () => {
-  return <div style={styles.turn}>
-    <Message />
-    <Choice />
-  </div>;
+  return (
+    <div style={styles.turn}>
+      <Message />
+      <Choice />
+    </div>
+  );
 };
 
 let styles = {
@@ -82,13 +87,13 @@ let styles = {
     fontSize: '2vh',
     fontWeight: 600,
     color: 'brown',
-
   },
   buttons: {
     width: 100,
     height: 35,
     borderRadius: 8,
     margin: 3,
+    backgroundColor: 'rgba(210, 180, 140, 0.7)',
   },
 };
 
