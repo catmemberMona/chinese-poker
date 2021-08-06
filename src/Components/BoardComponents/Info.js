@@ -39,9 +39,7 @@ export default function Info() {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id='simple-modal-title'>Rules</h2>
-      <p id='simple-modal-description'>
-        Under Construction
-      </p>
+      <p id='simple-modal-description'>Under Construction</p>
     </div>
   );
 
@@ -62,13 +60,12 @@ export default function Info() {
   );
 }
 
-
 let styles = {
   buttons: {
     width: 100,
     height: 50,
     borderRadius: 8,
     margin: 5,
-    backgroundColor: 'tan'
+    backgroundColor: 'rgba(210, 180, 140, 0.7)',
   },
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Avatar } from '@material-ui/core';
-import mona from '../../Images/landingSection/mona.jpg'
+import mona from '../../Images/landingSection/mona.jpg';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ElementalPoker = () => {
-
   const heading = (
     <div style={styles.gameHeading}>
       <h1>Elemental Poker</h1>
@@ -87,7 +86,7 @@ const ElementalPoker = () => {
 
       <div style={styles.gameContent}>
         {gameContent}
-   
+
         <div style={styles.gameDemo}>
           <iframe
             display='block'
@@ -103,10 +102,10 @@ const ElementalPoker = () => {
       </div>
     </div>
   );
-}
+};
 
 const Developer = (props) => {
-  const classes = props.classes
+  const classes = props.classes;
   return (
     <div style={styles.aboutDeveloper}>
       <h1>Mona Zheng</h1>
@@ -119,12 +118,17 @@ const Developer = (props) => {
         />
         <div style={styles.devText}>
           <p>Hello visitors!</p>
-          <p>Developing this game was a really enjoyable experience! I decided to create this based on chinese poker because it was a game the I played with my family when I was younger. It's still a game I enjoy playing.</p>
+          <p>
+            Developing this game was a really enjoyable experience! I decided to
+            create this based on chinese poker because it was a game the I
+            played with my family when I was younger. It's still a game I enjoy
+            playing.
+          </p>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default function Info() {
   const classes = useStyles();
@@ -141,8 +145,7 @@ export default function Info() {
   const body = (
     <div style={styles.container} className={classes.paper}>
       <ElementalPoker />
-        <Developer classes={classes} />
-
+      <Developer classes={classes} />
     </div>
   );
 
@@ -156,7 +159,7 @@ export default function Info() {
         onClose={handleClose}
         aria-labelledby='simple-modal-title'
         aria-describedby='simple-modal-description'
-        style={{overflowY: "auto"}}
+        style={{ overflowY: 'auto' }}
       >
         {body}
       </Modal>
@@ -164,14 +167,13 @@ export default function Info() {
   );
 }
 
-
 let styles = {
   buttons: {
     width: 100,
     height: 50,
     borderRadius: 8,
     margin: 5,
-    backgroundColor: 'tan',
+    backgroundColor: 'rgba(210, 180, 140, 0.7)',
   },
   container: {
     margin: 'auto',

@@ -7,15 +7,22 @@ import {
   toggleInGameState,
   setToPlayersTurn,
 } from '../../store/reducers/gameReducer';
-import { givePlayerStack, updateMessage } from '../../store/reducers/playerReducer';
-import { giveComputerStack } from '../../store/reducers/computerReducer'
+import {
+  givePlayerStack,
+  updateMessage,
+} from '../../store/reducers/playerReducer';
+import { giveComputerStack } from '../../store/reducers/computerReducer';
 import { resetGame } from '../../store/reducers';
 
-import createDeck from '../../Data/card'
+import createDeck from '../../Data/card';
 
 const PlayersInfo = () => {
-  let cardsRemainingCountForPlayer = useSelector(state => state.player.cardsLeft)
-  let cardsRemainingCountForComputer = useSelector(state => state.computer.cardsLeft)
+  let cardsRemainingCountForPlayer = useSelector(
+    (state) => state.player.cardsLeft
+  );
+  let cardsRemainingCountForComputer = useSelector(
+    (state) => state.computer.cardsLeft
+  );
 
   return (
     <div style={styles.playersInfo}>
@@ -33,68 +40,71 @@ const PlayersInfo = () => {
       </div>
     </div>
   );
-}
+};
 
 const shuffleAndSeperateCards = (deck) => {
-  let randomIndices = []
+  let randomIndices = [];
 
-  for (let i = 0; i < deck.length / 2; i++){
-    let randomInt = -1
+  for (let i = 0; i < deck.length / 2; i++) {
+    let randomInt = -1;
     do {
       randomInt = Math.floor(Math.random() * deck.length);
-    } while (randomIndices.includes(randomInt))
-    
-    randomIndices.push(randomInt)
+    } while (randomIndices.includes(randomInt));
+
+    randomIndices.push(randomInt);
   }
 
-  randomIndices.sort((a,b) => a - b)
+  randomIndices.sort((a, b) => a - b);
 
-  let computerStack = []
-  let playerStack = []
-  let indexPointer = 0
+  let computerStack = [];
+  let playerStack = [];
+  let indexPointer = 0;
 
   for (let i = 0; i < deck.length; i++) {
     if (randomIndices[indexPointer] === i) {
-      computerStack.push(deck[i])
-      indexPointer+=1
+      computerStack.push(deck[i]);
+      indexPointer += 1;
     } else {
-      playerStack.push(deck[i])
+      playerStack.push(deck[i]);
     }
   }
 
-  return [computerStack, playerStack]
-}
+  return [computerStack, playerStack];
+};
 
 const RoundInfo = () => {
-  let game = useSelector((state) => (state.game))
-  let isFirstRound = game.isFirstGame
-  let isInPlay = game.isInPlay
+  let game = useSelector((state) => state.game);
+  let isFirstRound = game.isFirstGame;
+  let isInPlay = game.isInPlay;
 
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
 
   const startRound = () => {
     if (!isFirstRound) {
       dispatch(resetGame());
-    
     }
-    
+
     dispatch(setFirstGameStateToFalse());
     dispatch(toggleInGameState());
 
     const deck = createDeck();
 
-    let [computerStack, playerStack] = shuffleAndSeperateCards(deck)
+    let [computerStack, playerStack] = shuffleAndSeperateCards(deck);
 
     let playersHand = playerStack.sort((a, b) => a.id - b.id);
     let computerHand = computerStack.sort((a, b) => a.id - b.id);
-    // dispatch to computer and player card stacks 
+    // dispatch to computer and player card stacks
     dispatch(givePlayerStack(playersHand));
     dispatch(giveComputerStack(computerHand));
 
     // asign first player by who has the smallest 3
     if (playersHand[0].id === 1.1) {
       dispatch(setToPlayersTurn());
-      dispatch(updateMessage("You have the lowest ranked 3, so you can select and place your card(s) first."))
+      dispatch(
+        updateMessage(
+          'You have the lowest ranked 3, so you can select and place your card(s) first.'
+        )
+      );
     } else {
       dispatch(
         updateMessage(
@@ -102,13 +112,11 @@ const RoundInfo = () => {
         )
       );
     }
-
-
-  }
+  };
 
   const reStart = () => {
     // dispatch(resetGame());
-    startRound()
+    startRound();
   };
 
   return (
@@ -178,13 +186,13 @@ let styles = {
     height: 50,
     borderRadius: 8,
     margin: 5,
+    backgroundColor: 'rgba(210, 180, 140, 0.7)',
   },
   reshuffle: {
     width: 100,
     height: 50,
     borderRadius: 8,
     margin: 5,
-
   },
 };
 
