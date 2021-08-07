@@ -120,7 +120,7 @@ const Developer = (props) => {
           <p>Hello visitors!</p>
           <p>
             Developing this game was a really enjoyable experience! I decided to
-            create this based on chinese poker because it was a game the I
+            create this based on chinese poker because it was a game that I
             played with my family when I was younger. It's still a game I enjoy
             playing.
           </p>
