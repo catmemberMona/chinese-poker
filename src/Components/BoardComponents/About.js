@@ -188,6 +188,7 @@ let styles = {
   },
   devContent: {
     flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
   },
   devText: {
     padding: '1vw',
